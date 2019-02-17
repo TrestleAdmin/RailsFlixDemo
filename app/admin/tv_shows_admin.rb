@@ -18,7 +18,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
       tv_show.genres.map(&:name)
     end
     column :status, sort: :status, align: :center do |tv_show|
-      status_tag(tv_show.status, { "Returning Series" => :success, "Ended" => :warning, "Canceled" => :danger }[tv_show.status])
+      status_tag(tv_show.status, { "Returning Series" => :success, "Pilot" => :warning, "Ended" => :danger, "Canceled" => :danger }[tv_show.status] || :default)
     end
     column :first_air_date, align: :center
     column :last_air_date, align: :center
@@ -57,9 +57,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
         link_to tv_show.tmdb_id, tv_show.tmdb_url, target: "_blank"
       end
 
-      static_field :status do
-        status_tag(tv_show.status, { "Returning Series" => :success, "Ended" => :warning, "Canceled" => :danger }[tv_show.status])
-      end
+      select :status, TVShow::STATUSES
 
       divider
 

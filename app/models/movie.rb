@@ -1,6 +1,15 @@
 class Movie < ApplicationRecord
   include Media
 
+  STATUSES = [
+    "Rumored",
+    "Planned",
+    "In Production",
+    "Post Production",
+    "Released",
+    "Canceled"
+  ]
+
   has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "Movie::Genre"
 
   def tmdb_url

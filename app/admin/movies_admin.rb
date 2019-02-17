@@ -18,7 +18,7 @@ Trestle.resource(:movies) do
       movie.genres.map(&:name)
     end
     column :status, sort: :status, align: :center do |movie|
-      status_tag(movie.status, { "Released" => :success, "Post Production" => :warning }[movie.status])
+      status_tag(movie.status, { "Released" => :success, "Canceled" => :danger }[movie.status] || :default)
     end
     column :release_date, align: :center
     column :score, sort: :vote_average, align: :center do |movie|
@@ -62,9 +62,7 @@ Trestle.resource(:movies) do
         link_to movie.imdb_id, movie.imdb_url, target: "_blank"
       end
 
-      static_field :status do
-        status_tag(movie.status, { "Released" => :success, "Post Production" => :warning }[movie.status])
-      end
+      select :status, Movie::STATUSES
 
       date_field :release_date
 
