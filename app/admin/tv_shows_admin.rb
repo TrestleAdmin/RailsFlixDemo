@@ -55,14 +55,16 @@ Trestle.resource(:tv_shows, model: TVShow) do
 
       static_field :tmdb, label: "TheMovieDB.org" do
         link_to tv_show.tmdb_id, tv_show.tmdb_url, target: "_blank"
-      end
+      end if tv_show.tmdb_id?
 
       select :status, TVShow::STATUSES
 
-      divider
+      if tv_show.persisted?
+        divider
 
-      static_field :score do
-        "#{tv_show.score}% (#{pluralize(tv_show.vote_count, 'vote')})"
+        static_field :score do
+          "#{tv_show.score}% (#{pluralize(tv_show.vote_count, 'vote')})"
+        end
       end
     end
   end

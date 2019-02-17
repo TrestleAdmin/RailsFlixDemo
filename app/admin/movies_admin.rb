@@ -56,20 +56,22 @@ Trestle.resource(:movies) do
 
       static_field :tmdb, label: "TheMovieDB.org" do
         link_to movie.tmdb_id, movie.tmdb_url, target: "_blank"
-      end
+      end if movie.tmdb_id?
 
       static_field :imdb, label: "IMDB.com" do
         link_to movie.imdb_id, movie.imdb_url, target: "_blank"
-      end
+      end if movie.imdb_id?
 
       select :status, Movie::STATUSES
 
       date_field :release_date
 
-      divider
+      if movie.persisted?
+        divider
 
-      static_field :score do
-        "#{movie.score}% (#{pluralize(movie.vote_count, 'vote')})"
+        static_field :score do
+          "#{movie.score}% (#{pluralize(movie.vote_count, 'vote')})"
+        end
       end
     end
   end
