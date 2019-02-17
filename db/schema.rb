@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_16_013706) do
+ActiveRecord::Schema.define(version: 2019_02_17_101851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "genres", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type", "name"], name: "index_genres_on_type_and_name"
+  end
 
   create_table "genres_movies", id: false, force: :cascade do |t|
     t.bigint "genre_id"
@@ -22,12 +30,11 @@ ActiveRecord::Schema.define(version: 2019_02_16_013706) do
     t.index ["movie_id"], name: "index_genres_movies_on_movie_id"
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string "type"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["type", "name"], name: "index_genres_on_type_and_name"
+  create_table "genres_tv_shows", id: false, force: :cascade do |t|
+    t.bigint "genre_id"
+    t.bigint "tv_show_id"
+    t.index ["genre_id"], name: "index_genres_tv_shows_on_genre_id"
+    t.index ["tv_show_id"], name: "index_genres_tv_shows_on_tv_show_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -52,6 +59,24 @@ ActiveRecord::Schema.define(version: 2019_02_16_013706) do
     t.index ["release_date"], name: "index_movies_on_release_date"
     t.index ["title"], name: "index_movies_on_title"
     t.index ["vote_average"], name: "index_movies_on_vote_average"
+  end
+
+  create_table "tv_shows", force: :cascade do |t|
+    t.integer "tmdb_id"
+    t.string "name"
+    t.string "overview"
+    t.string "homepage"
+    t.string "status"
+    t.date "first_air_date"
+    t.date "last_air_date"
+    t.string "poster_path"
+    t.string "backdrop_path"
+    t.float "vote_average"
+    t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tv_shows_on_name"
+    t.index ["vote_average"], name: "index_tv_shows_on_vote_average"
   end
 
 end

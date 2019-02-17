@@ -12,7 +12,12 @@ Tmdb::Genre.movie_list.each do |genre|
   Movie::Genre.where(name: genre.name).first_or_create
 end
 
-# Import movies from TheMovieDB.org
+# Import TV show genres
+Tmdb::Genre.tv_list.each do |genre|
+  TVShow::Genre.where(name: genre.name).first_or_create
+end
+
+# Import movies
 (1..PAGES).each do |page|
   response = throttle.t { Tmdb::Movie.popular(page: page) }
   response.results.each do |stub|
@@ -22,5 +27,18 @@ end
     $stdout.write "Importing #{movie.title}...\n"
 
     MovieImporter.import(movie)
+  end
+end
+
+# Import TV shows
+(1..PAGES).each do |page|
+  response = throttle.t { Tmdb::TV.popular(page: page) }
+  response.results.each do |stub|
+    tv_show = throttle.t { Tmdb::TV.detail(stub.id) }
+
+    $stdout.write "\e[A\e[2K"
+    $stdout.write "Importing #{tv_show.name}...\n"
+
+    TVShowImporter.import(tv_show)
   end
 end

@@ -1,25 +1,7 @@
 class Movie < ApplicationRecord
-  has_and_belongs_to_many :genres, -> { alphabetical }
+  include Media
 
-  def score
-    (vote_average * 10).to_i
-  end
-
-  def poster?
-    poster_path.present?
-  end
-
-  def poster_url(version="original")
-    "https://image.tmdb.org/t/p/#{version}#{poster_path}"
-  end
-
-  def backdrop?
-    backdrop_path.present?
-  end
-
-  def backdrop_url(version="original")
-    "https://image.tmdb.org/t/p/#{version}#{backdrop_path}"
-  end
+  has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "Movie::Genre"
 
   def tmdb_url
     "https://www.themoviedb.org/movie/#{tmdb_id}"

@@ -6,7 +6,7 @@ class CreateGenres < ActiveRecord::Migration[5.2]
 
       t.timestamps
 
-      t.index [:type, :name]
+      t.index [:type, :name], unique: true
     end
   end
 end
