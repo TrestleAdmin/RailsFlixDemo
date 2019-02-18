@@ -20,8 +20,8 @@ class CreateMovies < ActiveRecord::Migration[5.2]
 
       t.boolean :video
 
-      t.float :vote_average, index: true
-      t.integer :vote_count
+      t.float :vote_average, index: true, default: 0
+      t.integer :vote_count, default: 0
 
       t.timestamps
     end

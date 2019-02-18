@@ -14,8 +14,8 @@ class CreateTVShows < ActiveRecord::Migration[5.2]
       t.string :poster_path
       t.string :backdrop_path
 
-      t.float :vote_average, index: true
-      t.integer :vote_count
+      t.float :vote_average, index: true, default: 0
+      t.integer :vote_count, default: 0
 
       t.timestamps
     end

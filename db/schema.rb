@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2019_02_17_232600) do
     t.string "poster_path"
     t.string "backdrop_path"
     t.boolean "video"
-    t.float "vote_average"
-    t.integer "vote_count"
+    t.float "vote_average", default: 0.0
+    t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["release_date"], name: "index_movies_on_release_date"
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 2019_02_17_232600) do
     t.date "last_air_date"
     t.string "poster_path"
     t.string "backdrop_path"
-    t.float "vote_average"
-    t.integer "vote_count"
+    t.float "vote_average", default: 0.0
+    t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tv_shows_on_name"
