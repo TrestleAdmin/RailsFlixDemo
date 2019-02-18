@@ -5,7 +5,7 @@ require 'throttler'
 throttle = Throttler.new(4)
 
 # Pages of movies / TV shows to fetch
-PAGES = 1
+PAGES = 50
 
 # Import movie genres
 Tmdb::Genre.movie_list.each do |genre|
