@@ -1,7 +1,7 @@
-module Media
-  def score
-    (vote_average * 10).to_i
-  end
+class TVShow::Season < ApplicationRecord
+  belongs_to :tv_show
+
+  scope :ordered, -> { order(number: :asc) }
 
   def poster?
     poster_path.present?
@@ -9,14 +9,6 @@ module Media
 
   def poster_url(version="original")
     tmdb_image(poster_path, version)
-  end
-
-  def backdrop?
-    backdrop_path.present?
-  end
-
-  def backdrop_url(version="original")
-    tmdb_image(backdrop_path, version)
   end
 
   def tmdb_image(path, version="original")

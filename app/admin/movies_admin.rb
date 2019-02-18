@@ -10,8 +10,8 @@ Trestle.resource(:movies) do
   end
 
   table do
-    column :poster, header: nil, align: :center, class: "movie-poster-column" do |movie|
-      admin_link_to(image_tag(movie.poster_url("h100"), class: "movie-poster"), movie) if movie.poster?
+    column :poster, header: nil, align: :center, class: "poster-column" do |movie|
+      admin_link_to(image_tag(movie.poster_url("h100"), class: "poster"), movie) if movie.poster?
     end
     column :title, link: true, truncate: false
     column :genres, format: :tags do |movie|
@@ -31,7 +31,7 @@ Trestle.resource(:movies) do
     tab :movie do
       text_field :title
       text_field :tagline
-      text_area :overview, rows: 3
+      text_area :overview, rows: 5
       select :genre_ids, Movie::Genre.alphabetical, { label: "Genres" }, multiple: true
 
       divider

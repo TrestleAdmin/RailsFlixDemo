@@ -16,7 +16,21 @@ class TVShowImporter
     tv_show.vote_average = tmdb.vote_average
     tv_show.vote_count   = tmdb.vote_count
 
-    tv_show.genres = tmdb.genres.map { |g| TVShow::Genre.where(name: g.name).first_or_create }
+    tv_show.genres = tmdb.genres.map { |g|
+      TVShow::Genre.where(name: g.name).first_or_create
+    }
+
+    tv_show.seasons = tmdb.seasons.map { |s|
+      TVShow::Season.new({
+        tmdb_id: s.id,
+        number: s.season_number,
+        name: s.name,
+        overview: s.overview,
+        air_date: s.air_date,
+        episode_count: s.episode_count,
+        poster_path: s.poster_path
+      })
+    }
 
     tv_show.save!
   end

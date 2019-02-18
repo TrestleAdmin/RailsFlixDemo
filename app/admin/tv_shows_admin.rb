@@ -10,8 +10,8 @@ Trestle.resource(:tv_shows, model: TVShow) do
   end
 
   table do
-    column :poster, header: nil, align: :center, class: "movie-poster-column" do |tv_show|
-      admin_link_to(image_tag(tv_show.poster_url("h100"), class: "movie-poster"), tv_show) if tv_show.poster?
+    column :poster, header: nil, align: :center, class: "poster-column" do |tv_show|
+      admin_link_to(image_tag(tv_show.poster_url("h100"), class: "poster"), tv_show) if tv_show.poster?
     end
     column :name, link: true, truncate: false
     column :genres, format: :tags do |tv_show|
@@ -29,9 +29,9 @@ Trestle.resource(:tv_shows, model: TVShow) do
   end
 
   form do |tv_show|
-    tab :show do
+    tab :tv_show do
       text_field :name
-      text_area :overview, rows: 3
+      text_area :overview, rows: 5
       select :genre_ids, TVShow::Genre.alphabetical, { label: "Genres" }, multiple: true
 
       divider
@@ -41,6 +41,18 @@ Trestle.resource(:tv_shows, model: TVShow) do
       row do
         col(sm: 6) { date_field :first_air_date }
         col(sm: 6) { date_field :last_air_date }
+      end
+    end
+
+    tab :seasons, badge: tv_show.seasons.count do
+      table tv_show.seasons do
+        column :poster, header: nil, align: :center, class: "poster-column" do |season|
+          admin_link_to(image_tag(season.poster_url("h100"), class: "poster"), season) if season.poster?
+        end
+        column :name, link: true, truncate: false
+        column :episode_count, align: :center, header: "Episodes"
+        column :air_date, align: :center
+        actions
       end
     end
 

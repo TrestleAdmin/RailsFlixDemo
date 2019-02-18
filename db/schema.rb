@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_17_101851) do
+ActiveRecord::Schema.define(version: 2019_02_17_232600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_02_17_101851) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["type", "name"], name: "index_genres_on_type_and_name"
+    t.index ["type", "name"], name: "index_genres_on_type_and_name", unique: true
   end
 
   create_table "genres_movies", id: false, force: :cascade do |t|
@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 2019_02_17_101851) do
     t.index ["release_date"], name: "index_movies_on_release_date"
     t.index ["title"], name: "index_movies_on_title"
     t.index ["vote_average"], name: "index_movies_on_vote_average"
+  end
+
+  create_table "tv_show_seasons", force: :cascade do |t|
+    t.bigint "tv_show_id"
+    t.integer "tmdb_id"
+    t.integer "number"
+    t.string "name"
+    t.string "overview"
+    t.date "air_date"
+    t.integer "episode_count"
+    t.string "poster_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tv_show_id"], name: "index_tv_show_seasons_on_tv_show_id"
   end
 
   create_table "tv_shows", force: :cascade do |t|
