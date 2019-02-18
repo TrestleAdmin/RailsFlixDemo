@@ -3,6 +3,10 @@ class TVShow::Season < ApplicationRecord
 
   scope :ordered, -> { order(number: :asc) }
 
+  def tmdb_url
+    "https://www.themoviedb.org/tv/#{tv_show.tmdb_id}/season/#{number}"
+  end
+
   def poster?
     poster_path.present?
   end

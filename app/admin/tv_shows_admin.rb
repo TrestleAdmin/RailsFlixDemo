@@ -45,15 +45,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
     end
 
     tab :seasons, badge: tv_show.seasons.count do
-      table tv_show.seasons do
-        column :poster, header: nil, align: :center, class: "poster-column" do |season|
-          admin_link_to(image_tag(season.poster_url("h100"), class: "poster"), season) if season.poster?
-        end
-        column :name, link: true, truncate: false
-        column :episode_count, align: :center, header: "Episodes"
-        column :air_date, align: :center
-        actions
-      end
+      table TVShow::SeasonsAdmin.table, collection: tv_show.seasons
     end
 
     tab :backdrop do
