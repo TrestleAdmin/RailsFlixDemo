@@ -4,7 +4,9 @@ module Media
   end
 
   def media_count
-    videos.count + images.count
+    count = videos.count + images.count
+    count += 1 if backdrop?
+    count
   end
 
   def poster?

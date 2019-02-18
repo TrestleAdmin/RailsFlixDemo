@@ -59,10 +59,6 @@ Trestle.resource(:tv_shows, model: TVShow) do
 
     tab :media, partial: "admin/shared/media", badge: tv_show.media_count
 
-    tab :backdrop do
-      link_to content_tag(:figure, image_tag(tv_show.backdrop_url), class: "movie-backdrop"), tv_show.backdrop_url, data: { behavior: "zoom" }
-    end if tv_show.backdrop?
-
     sidebar do
       form_group :poster, label: false do
         link_to image_tag(tv_show.poster_url("w500")), tv_show.poster_url, data: { behavior: "zoom" }

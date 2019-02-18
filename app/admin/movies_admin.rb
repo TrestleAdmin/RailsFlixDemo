@@ -56,10 +56,6 @@ Trestle.resource(:movies) do
 
     tab :media, partial: "admin/shared/media", badge: movie.media_count
 
-    tab :backdrop do
-      link_to content_tag(:figure, image_tag(movie.backdrop_url), class: "movie-backdrop"), movie.backdrop_url, data: { behavior: "zoom" }
-    end if movie.backdrop?
-
     sidebar do
       form_group :poster, label: false do
         link_to image_tag(movie.poster_url("w500")), movie.poster_url, data: { behavior: "zoom" }

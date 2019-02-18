@@ -25,9 +25,17 @@
 <h3>Backdrops</h3>
 
 <ul class="media-grid" data-behavior="gallery">
+  <% if instance.backdrop? %>
+    <li>
+      <figure class="fill zoom aspect-ratio-16x9">
+      <%= link_to image_tag(instance.backdrop_url("w780")), instance.backdrop_url %>
+      </figure>
+    </li>
+  <% end %>
+
   <% instance.images.backdrops.each do |image| %>
     <li>
-      <figure class="zoom zoom aspect-ratio-16x9">
+      <figure class="fill zoom aspect-ratio-16x9">
         <%= link_to image_tag(image.url("w780")), image.url %>
       </figure>
     </li>
