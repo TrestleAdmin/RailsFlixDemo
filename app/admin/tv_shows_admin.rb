@@ -11,7 +11,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
 
   table do
     column :poster, header: nil, align: :center, class: "poster-column" do |tv_show|
-      admin_link_to(image_tag(tv_show.poster_url("h100"), class: "poster"), tv_show) if tv_show.poster?
+      admin_link_to(image_tag(tv_show.poster_url("w154"), class: "poster"), tv_show) if tv_show.poster?
     end
     column :title, link: true do |tv_show|
       safe_join([
