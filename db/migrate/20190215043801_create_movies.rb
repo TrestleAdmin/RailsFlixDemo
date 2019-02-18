@@ -1,7 +1,7 @@
 class CreateMovies < ActiveRecord::Migration[5.2]
   def change
     create_table :movies do |t|
-      t.integer :tmdb_id, unique: true
+      t.integer :tmdb_id, index: true
       t.string :imdb_id
 
       t.string :title, index: true

@@ -1,7 +1,7 @@
 class CreateTVShows < ActiveRecord::Migration[5.2]
   def change
     create_table :tv_shows do |t|
-      t.integer :tmdb_id, unique: true
+      t.integer :tmdb_id, index: true
 
       t.string :name, index: true
       t.string :overview
