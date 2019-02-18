@@ -26,7 +26,10 @@ end
     $stdout.write "\e[A\e[2K"
     $stdout.write "Importing #{movie.title}...\n"
 
-    MovieImporter.import(movie)
+    instance = MovieImporter.import(movie)
+
+    credits = Tmdb::Movie.cast(stub.id)
+    CreditsImporter.new(instance).import(credits)
   end
 end
 
@@ -39,6 +42,9 @@ end
     $stdout.write "\e[A\e[2K"
     $stdout.write "Importing #{tv_show.name}...\n"
 
-    TVShowImporter.import(tv_show)
+    instance = TVShowImporter.import(tv_show)
+
+    credits = Tmdb::TV.cast(stub.id)
+    CreditsImporter.new(instance).import(credits)
   end
 end

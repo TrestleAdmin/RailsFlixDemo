@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_17_232600) do
+ActiveRecord::Schema.define(version: 2019_02_18_012356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actors", force: :cascade do |t|
+    t.integer "tmdb_id"
+    t.string "name"
+    t.integer "gender", default: 0
+    t.string "profile_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_actors_on_name"
+  end
 
   create_table "genres", force: :cascade do |t|
     t.string "type"

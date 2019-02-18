@@ -33,5 +33,7 @@ class TVShowImporter
     }
 
     tv_show.save!
+
+    tv_show
   end
 end

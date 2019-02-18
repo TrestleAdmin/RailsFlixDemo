@@ -26,5 +26,7 @@ class MovieImporter
     movie.genres = tmdb.genres.map { |g| Movie::Genre.where(name: g.name).first_or_create }
 
     movie.save!
+
+    movie
   end
 end
