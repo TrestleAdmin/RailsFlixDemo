@@ -1,68 +1,19 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-require 'throttler'
-throttle = Throttler.new(4)
-
 # Pages of movies / TV shows to fetch
-PAGES = 50
+PAGES = 1
 
-# Import movie genres
-Tmdb::Genre.movie_list.each do |genre|
-  Movie::Genre.where(name: genre.name).first_or_create
+puts "Importing movies...\n"
+TmdbImporter.new(scope: Tmdb::Movie, importer: MovieImporter, pages: PAGES).import do |movie|
+  $stdout.write "\e[2K\r - #{movie.title}"
 end
+$stdout.write "\e[2K\r"
 
-# Import TV show genres
-Tmdb::Genre.tv_list.each do |genre|
-  TVShow::Genre.where(name: genre.name).first_or_create
+puts "Importing TV shows...\n"
+TmdbImporter.new(scope: Tmdb::TV, importer: TVShowImporter, pages: PAGES).import do |tv_show|
+  $stdout.write "\e[2K\r - #{tv_show.name}"
 end
+$stdout.write "\e[2K\r"
 
-# Import movies
-(1..PAGES).each do |page|
-  response = throttle.t { Tmdb::Movie.popular(page: page) }
-  response.results.each do |stub|
-    movie = throttle.t { Tmdb::Movie.detail(stub.id) }
-
-    $stdout.write "\e[A\e[2K"
-    $stdout.write "Importing #{movie.title}...\n"
-
-    instance = MovieImporter.import(movie)
-
-    credits = Tmdb::Movie.cast(stub.id)
-    CreditsImporter.new(instance).import(credits)
-
-    videos = Tmdb::Movie.videos(stub.id, language: "en")
-    VideosImporter.new(instance).import(videos)
-
-    posters = Tmdb::Movie.posters(stub.id, language: "en")
-    ImagesImporter.new(instance).import(posters, "Poster")
-
-    backdrops = Tmdb::Movie.backdrops(stub.id, language: "en")
-    ImagesImporter.new(instance).import(backdrops, "Backdrop")
-  end
-end
-
-# Import TV shows
-(1..PAGES).each do |page|
-  response = throttle.t { Tmdb::TV.popular(page: page) }
-  response.results.each do |stub|
-    tv_show = throttle.t { Tmdb::TV.detail(stub.id) }
-
-    $stdout.write "\e[A\e[2K"
-    $stdout.write "Importing #{tv_show.name}...\n"
-
-    instance = TVShowImporter.import(tv_show)
-
-    credits = Tmdb::TV.cast(stub.id)
-    CreditsImporter.new(instance).import(credits)
-
-    videos = Tmdb::TV.videos(stub.id, language: "en")
-    VideosImporter.new(instance).import(videos)
-
-    posters = Tmdb::TV.posters(stub.id, language: "en")
-    ImagesImporter.new(instance).import(posters, "Poster")
-
-    backdrops = Tmdb::TV.backdrops(stub.id, language: "en")
-    ImagesImporter.new(instance).import(backdrops, "Backdrop")
-  end
-end
+puts "Done!"
