@@ -11,7 +11,9 @@ class TVShow < ApplicationRecord
   ]
 
   has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "TVShow::Genre"
-  has_many :seasons, -> { ordered }
+  has_many :seasons, -> { ordered }, inverse_of: :tv_show
+
+  validates :name, :status, presence: true
 
   def tmdb_url
     "https://www.themoviedb.org/tv/#{tmdb_id}"
