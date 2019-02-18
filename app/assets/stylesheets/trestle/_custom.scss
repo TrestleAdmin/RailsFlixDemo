@@ -17,3 +17,9 @@
   height: 50px;
   max-width: none;
 }
+
+.media-grid {
+  figure.aspect-ratio-16x9 {
+    @include aspect-ratio(16 / 9);
+  }
+}

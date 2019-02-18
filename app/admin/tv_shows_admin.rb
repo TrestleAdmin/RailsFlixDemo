@@ -57,6 +57,8 @@ Trestle.resource(:tv_shows, model: TVShow) do
       table TVShow::SeasonsAdmin.table, collection: tv_show.seasons
     end
 
+    tab :media, partial: "admin/shared/media", badge: tv_show.media_count
+
     tab :backdrop do
       link_to content_tag(:figure, image_tag(tv_show.backdrop_url), class: "movie-backdrop"), tv_show.backdrop_url, data: { behavior: "zoom" }
     end if tv_show.backdrop?

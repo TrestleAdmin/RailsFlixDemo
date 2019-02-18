@@ -30,6 +30,9 @@ end
 
     credits = Tmdb::Movie.cast(stub.id)
     CreditsImporter.new(instance).import(credits)
+
+    videos = Tmdb::Movie.videos(stub.id)
+    VideosImporter.new(instance).import(videos)
   end
 end
 
@@ -46,5 +49,8 @@ end
 
     credits = Tmdb::TV.cast(stub.id)
     CreditsImporter.new(instance).import(credits)
+
+    videos = Tmdb::TV.videos(stub.id)
+    VideosImporter.new(instance).import(videos)
   end
 end

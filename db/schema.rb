@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_021740) do
+ActiveRecord::Schema.define(version: 2019_02_18_040145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,18 @@ ActiveRecord::Schema.define(version: 2019_02_18_021740) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tv_shows_on_name"
     t.index ["vote_average"], name: "index_tv_shows_on_vote_average"
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "media_type"
+    t.bigint "media_id"
+    t.string "name"
+    t.string "site"
+    t.string "key"
+    t.string "video_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["media_type", "media_id"], name: "index_videos_on_media_type_and_media_id"
   end
 
 end

@@ -3,6 +3,10 @@ module Media
     (vote_average * 10).to_i
   end
 
+  def media_count
+    videos.count
+  end
+
   def poster?
     poster_path.present?
   end

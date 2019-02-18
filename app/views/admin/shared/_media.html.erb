@@ -1,0 +1,11 @@
+<h3>Videos</h3>
+
+<ul class="media-grid" data-behavior="video-gallery">
+  <% instance.videos.each do |video| %>
+    <li>
+      <figure class="fill zoom aspect-ratio-16x9">
+        <%= link_to image_tag(video.thumbnail), video.url %>
+      </figure>
+    </li>
+  <% end %>
+</ul>
