@@ -2,7 +2,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 # Pages of movies / TV shows to fetch
-PAGES = 1
+PAGES = 25
 
 puts "Importing movies...\n"
 TmdbImporter.new(scope: Tmdb::Movie, importer: MovieImporter, pages: PAGES).import do |movie|
