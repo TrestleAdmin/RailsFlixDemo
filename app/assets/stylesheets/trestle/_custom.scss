@@ -20,6 +20,6 @@
 
 .media-grid {
   figure.aspect-ratio-16x9 {
-    @include aspect-ratio(16 / 9);
+    padding-bottom: percentage(9 / 16)
   }
 }

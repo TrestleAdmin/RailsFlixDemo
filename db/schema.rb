@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_040145) do
+ActiveRecord::Schema.define(version: 2019_02_18_042745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2019_02_18_040145) do
     t.bigint "tv_show_id"
     t.index ["genre_id"], name: "index_genres_tv_shows_on_genre_id"
     t.index ["tv_show_id"], name: "index_genres_tv_shows_on_tv_show_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "media_type"
+    t.bigint "media_id"
+    t.string "image_type"
+    t.string "file_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["media_type", "media_id"], name: "index_images_on_media_type_and_media_id"
   end
 
   create_table "movies", force: :cascade do |t|

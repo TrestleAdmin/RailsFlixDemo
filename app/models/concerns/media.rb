@@ -4,7 +4,7 @@ module Media
   end
 
   def media_count
-    videos.count
+    videos.count + images.count
   end
 
   def poster?

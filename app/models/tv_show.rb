@@ -14,6 +14,7 @@ class TVShow < ApplicationRecord
   has_many :seasons, -> { ordered }, inverse_of: :tv_show
 
   has_many :videos, as: :media
+  has_many :images, as: :media
 
   has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "TVShow::Genre"
 

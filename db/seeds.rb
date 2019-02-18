@@ -31,8 +31,14 @@ end
     credits = Tmdb::Movie.cast(stub.id)
     CreditsImporter.new(instance).import(credits)
 
-    videos = Tmdb::Movie.videos(stub.id)
+    videos = Tmdb::Movie.videos(stub.id, language: "en")
     VideosImporter.new(instance).import(videos)
+
+    posters = Tmdb::Movie.posters(stub.id, language: "en")
+    ImagesImporter.new(instance).import(posters, "Poster")
+
+    backdrops = Tmdb::Movie.backdrops(stub.id, language: "en")
+    ImagesImporter.new(instance).import(backdrops, "Backdrop")
   end
 end
 
@@ -50,7 +56,13 @@ end
     credits = Tmdb::TV.cast(stub.id)
     CreditsImporter.new(instance).import(credits)
 
-    videos = Tmdb::TV.videos(stub.id)
+    videos = Tmdb::TV.videos(stub.id, language: "en")
     VideosImporter.new(instance).import(videos)
+
+    posters = Tmdb::TV.posters(stub.id, language: "en")
+    ImagesImporter.new(instance).import(posters, "Poster")
+
+    backdrops = Tmdb::TV.backdrops(stub.id, language: "en")
+    ImagesImporter.new(instance).import(backdrops, "Backdrop")
   end
 end

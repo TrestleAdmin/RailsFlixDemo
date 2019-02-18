@@ -9,3 +9,27 @@
     </li>
   <% end %>
 </ul>
+
+<h3>Posters</h3>
+
+<ul class="media-grid" data-behavior="gallery">
+  <% instance.images.posters.each do |image| %>
+    <li>
+      <figure class="zoom">
+        <%= link_to image_tag(image.url("w500")), image.url %>
+      </figure>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Backdrops</h3>
+
+<ul class="media-grid" data-behavior="gallery">
+  <% instance.images.backdrops.each do |image| %>
+    <li>
+      <figure class="zoom zoom aspect-ratio-16x9">
+        <%= link_to image_tag(image.url("w780")), image.url %>
+      </figure>
+    </li>
+  <% end %>
+</ul>
