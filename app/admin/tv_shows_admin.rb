@@ -13,7 +13,12 @@ Trestle.resource(:tv_shows, model: TVShow) do
     column :poster, header: nil, align: :center, class: "poster-column" do |tv_show|
       admin_link_to(image_tag(tv_show.poster_url("h100"), class: "poster"), tv_show) if tv_show.poster?
     end
-    column :name, link: true, truncate: false
+    column :title, link: true do |tv_show|
+      safe_join([
+        content_tag(:strong, tv_show.name),
+        content_tag(:small, tv_show.credits.top_billing.map(&:name).join(", "), class: "text-muted")
+      ], "<br />".html_safe)
+    end
     column :genres, format: :tags do |tv_show|
       tv_show.genres.map(&:name)
     end
