@@ -16,10 +16,10 @@ Trestle.resource(:tv_shows, model: TVShow) do
     column :title, link: true do |tv_show|
       safe_join([
         content_tag(:strong, tv_show.name),
-        content_tag(:small, tv_show.credits.top_billing.map(&:name).join(", "), class: "text-muted")
+        content_tag(:small, tv_show.credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
       ], "<br />".html_safe)
     end
-    column :genres, format: :tags do |tv_show|
+    column :genres, format: :tags, class: "hidden-xs" do |tv_show|
       tv_show.genres.map(&:name)
     end
     column :status, sort: :status, align: :center do |tv_show|
