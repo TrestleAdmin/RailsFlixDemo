@@ -11,7 +11,7 @@ Trestle.resource(:actors) do
 
   table do
     column :profile, header: false, align: :center, blank: nil do |actor|
-      avatar { image_tag(actor.profile_url("w185")) } if actor.profile?
+      avatar(fallback: actor.initials) { image_tag(actor.profile_url("w185")) if actor.profile? }
     end
     column :name, link: true
     column :gender, align: :center do |actor|

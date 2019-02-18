@@ -6,6 +6,10 @@ class Actor < ApplicationRecord
 
   enum gender: { "Not specified" => 0, "Female" => 1, "Male" => 2 }
 
+  def initials
+    name.split.map(&:first).join
+  end
+
   def profile?
     profile_path.present?
   end

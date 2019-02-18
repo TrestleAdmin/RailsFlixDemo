@@ -10,6 +10,8 @@ class Movie < ApplicationRecord
     "Canceled"
   ]
 
+  has_many :credits, -> { ordered }, as: :media
+
   has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "Movie::Genre"
 
   validates :title, :status, presence: true

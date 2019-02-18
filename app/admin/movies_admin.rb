@@ -45,6 +45,10 @@ Trestle.resource(:movies) do
       end
     end
 
+    tab :credits, badge: movie.credits.count do
+      table CreditsAdmin.table, collection: movie.credits.includes(:actor)
+    end
+
     tab :backdrop do
       link_to content_tag(:figure, image_tag(movie.backdrop_url), class: "movie-backdrop"), movie.backdrop_url, data: { behavior: "zoom" }
     end if movie.backdrop?

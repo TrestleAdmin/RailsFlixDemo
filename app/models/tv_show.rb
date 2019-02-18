@@ -10,8 +10,10 @@ class TVShow < ApplicationRecord
     'Pilot'
   ]
 
-  has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "TVShow::Genre"
+  has_many :credits, -> { ordered }, as: :media
   has_many :seasons, -> { ordered }, inverse_of: :tv_show
+
+  has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "TVShow::Genre"
 
   validates :name, :status, presence: true
   validates :tmdb_id, uniqueness: { allow_blank: true }
