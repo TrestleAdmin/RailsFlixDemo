@@ -13,7 +13,7 @@ Trestle.resource(:movies) do
     column :poster, header: nil, align: :center, class: "poster-column" do |movie|
       admin_link_to(image_tag(movie.poster_url("w154"), class: "poster"), movie) if movie.poster?
     end
-    column :title, link: true do |movie|
+    column :title, link: true, sort: :title do |movie|
       safe_join([
         content_tag(:strong, movie.title),
         content_tag(:small, movie.credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
