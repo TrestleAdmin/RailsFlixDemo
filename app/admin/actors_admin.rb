@@ -9,6 +9,14 @@ Trestle.resource(:actors) do
     model.alphabetical
   end
 
+  decorate_collection do |collection|
+    collection.group(:id).left_outer_joins(:credits).select("actors.*, COUNT(credits.actor_id) AS credits_count")
+  end
+
+  sort_column(:credits_count) do |collection, order|
+    collection.reorder("credits_count #{order}")
+  end
+
   table do
     column :profile, header: false, align: :center, blank: nil do |actor|
       avatar(fallback: actor.initials) { image_tag(actor.profile_url("w185")) if actor.profile? }
@@ -17,6 +25,7 @@ Trestle.resource(:actors) do
     column :gender, align: :center do |actor|
       status_tag(actor.gender)
     end
+    column :credits_count, header: "Credits", align: :center
     actions
   end
 

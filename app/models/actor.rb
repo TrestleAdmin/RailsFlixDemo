@@ -1,4 +1,6 @@
 class Actor < ApplicationRecord
+  has_many :credits
+
   scope :alphabetical, -> { order(name: :asc) }
 
   validates :name, presence: true
