@@ -9,6 +9,10 @@ Trestle.resource(:actors) do
     model.alphabetical
   end
 
+  search do |query|
+    query ? collection.pg_search(query).reorder(nil) : collection
+  end
+
   decorate_collection do |collection|
     collection.group(:id).left_outer_joins(:credits).select("actors.*, COUNT(credits.actor_id) AS credits_count")
   end

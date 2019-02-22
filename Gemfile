@@ -53,5 +53,8 @@ gem 'trestle'
 gem 'trestle-auth'
 gem 'trestle-search'
 
+# Model search
+gem 'pg_search'
+
 # TheMovieDB client
 gem 'themoviedb-api'

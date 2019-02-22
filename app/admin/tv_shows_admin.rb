@@ -9,6 +9,10 @@ Trestle.resource(:tv_shows, model: TVShow) do
     model.includes(:genres)
   end
 
+  search do |query|
+    query ? collection.pg_search(query) : collection
+  end
+
   table do
     column :poster, header: nil, align: :center, class: "poster-column" do |tv_show|
       admin_link_to(image_tag(tv_show.poster_url("w154"), class: "poster"), tv_show) if tv_show.poster?

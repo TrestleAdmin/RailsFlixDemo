@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_021908) do
+ActiveRecord::Schema.define(version: 2019_02_22_031028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 2019_02_22_021908) do
     t.string "profile_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.tsvector "tsv"
     t.index ["name"], name: "index_actors_on_name"
+    t.index ["tsv"], name: "index_actors_on_tsv", using: :gin
   end
 
   create_table "administrators", force: :cascade do |t|
@@ -99,8 +101,10 @@ ActiveRecord::Schema.define(version: 2019_02_22_021908) do
     t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.tsvector "tsv"
     t.index ["release_date"], name: "index_movies_on_release_date"
     t.index ["title"], name: "index_movies_on_title"
+    t.index ["tsv"], name: "index_movies_on_tsv", using: :gin
     t.index ["vote_average"], name: "index_movies_on_vote_average"
   end
 
@@ -132,7 +136,9 @@ ActiveRecord::Schema.define(version: 2019_02_22_021908) do
     t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.tsvector "tsv"
     t.index ["name"], name: "index_tv_shows_on_name"
+    t.index ["tsv"], name: "index_tv_shows_on_tsv", using: :gin
     t.index ["vote_average"], name: "index_tv_shows_on_vote_average"
   end
 

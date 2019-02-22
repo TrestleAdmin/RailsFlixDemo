@@ -9,6 +9,10 @@ Trestle.resource(:movies) do
     model.includes(:genres)
   end
 
+  search do |query|
+    query ? collection.pg_search(query) : collection
+  end
+
   table do
     column :poster, header: nil, align: :center, class: "poster-column" do |movie|
       admin_link_to(image_tag(movie.poster_url("w154"), class: "poster"), movie) if movie.poster?
