@@ -43,22 +43,22 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (9.4.7)
+    autoprefixer-rails (9.4.8)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
     bootsnap (1.4.0)
       msgpack (~> 1.0)
     builder (3.2.3)
-    byebug (10.0.2)
+    byebug (11.0.0)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.6.0)
-    dotenv-rails (2.6.0)
-      dotenv (= 2.6.0)
-      railties (>= 3.2, < 6.0)
+    dotenv (2.7.0)
+    dotenv-rails (2.7.0)
+      dotenv (= 2.7.0)
+      railties (>= 3.2, < 6.1)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -232,4 +232,4 @@ RUBY VERSION
    ruby 2.6.0p0
 
 BUNDLED WITH
-   2.0.0
+   2.0.1
