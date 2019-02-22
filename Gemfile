@@ -50,6 +50,7 @@ gem 'dotenv-rails'
 
 # Trestle admin framework
 gem 'trestle'
+gem 'trestle-auth'
 gem 'trestle-search'
 
 # TheMovieDB client
