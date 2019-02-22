@@ -13,7 +13,7 @@ Trestle.resource(:administrators, model: Trestle.config.auth.user_class, scope: 
     column :first_name
     column :last_name
     actions do |a|
-      a.delete unless a.instance == current_user
+      a.delete unless a.instance == current_user || a.instance.demo?
     end
   end
 
