@@ -1,0 +1,6 @@
+<% thumbnail ||= image.url("w500") %>
+<% url ||= image.url %>
+
+<div class="col-6 col-sm-4 col-md-3 my-3">
+  <%= link_to image_tag(thumbnail), url %>
+</div>

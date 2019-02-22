@@ -1,0 +1,76 @@
+<% content_for(:title, @tv_show.name) %>
+
+<div class="media-banner">
+  <figure class="backdrop">
+    <%= image_tag @tv_show.backdrop_url %>
+  </figure>
+
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-md-3">
+        <%= image_tag @tv_show.poster_url("w500"), class: "poster" %>
+      </div>
+
+      <div class="col-md-9">
+        <div class="media-info">
+          <h2 class="media-rating"><%= number_to_percentage(@tv_show.vote_average * 10, precision: 0) %></h2>
+
+          <h1 class="mb-4"><%= @tv_show.name %></h1>
+
+          <h5>Overview</h5>
+          <p><%= @tv_show.overview %></p>
+
+          <% if trailer = @tv_show.trailer %>
+            <%= link_to "View Trailer", trailer.url, class: "btn btn-primary rounded-pill", data: { behavior: "video" } %>
+          <% end %>
+
+          <%= link_to "TMDb", @tv_show.tmdb_url, target: "_blank", class: "btn btn-info rounded-pill" if @tv_show.tmdb_id? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><%= link_to "Cast", "#cast", class: "nav-link active", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Seasons (#{@tv_show.seasons.count})", "#seasons", class: "nav-link", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Videos (#{@tv_show.videos.count})", "#videos", class: "nav-link", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Posters (#{@tv_show.poster_count})", "#posters", class: "nav-link", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Backdrops (#{@tv_show.backdrop_count})", "#backdrops", class: "nav-link", data: { toggle: "tab" } %></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" role="tabpanel" id="cast">
+      <%= render "credits", credits: @credits %>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="seasons">
+      <%= render "seasons", seasons: @seasons %>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="videos">
+      <%= render "videos", videos: @videos %>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="posters">
+      <div class="row my-4" data-behavior="gallery">
+        <% if @tv_show.poster? %>
+          <%= render "image", thumbnail: @tv_show.poster_url("w500"), url: @tv_show.poster_url %>
+        <% end %>
+
+        <%= render partial: "image", collection: @posters %>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="backdrops">
+      <div class="row my-4" data-behavior="gallery">
+        <% if @tv_show.backdrop? %>
+          <%= render "image", thumbnail: @tv_show.backdrop_url("w500"), url: @tv_show.backdrop_url %>
+        <% end %>
+
+        <%= render partial: "image", collection: @backdrops %>
+      </div>
+    </div>
+  </div>
+</div>

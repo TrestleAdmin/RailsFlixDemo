@@ -1,0 +1,72 @@
+<% content_for(:title, @movie.title) %>
+
+<div class="media-banner">
+  <figure class="backdrop">
+    <%= image_tag @movie.backdrop_url %>
+  </figure>
+
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-md-3">
+        <%= image_tag @movie.poster_url("w500"), class: "poster" %>
+      </div>
+
+      <div class="col-md-9">
+        <div class="media-info">
+          <h2 class="media-rating"><%= number_to_percentage(@movie.vote_average * 10, precision: 0) %></h2>
+
+          <h1 class="mb-4"><%= @movie.title %></h1>
+
+          <h5>Overview</h5>
+          <p><%= @movie.overview %></p>
+
+          <% if trailer = @movie.trailer %>
+            <%= link_to "View Trailer", trailer.url, class: "btn btn-primary rounded-pill", data: { behavior: "video" } %>
+          <% end %>
+
+          <%= link_to "IMDb", @movie.imdb_url, target: "_blank", class: "btn btn-light rounded-pill" if @movie.imdb_id? %>
+          <%= link_to "TMDb", @movie.tmdb_url, target: "_blank", class: "btn btn-info rounded-pill" if @movie.tmdb_id? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><%= link_to "Cast", "#cast", class: "nav-link active", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Videos (#{@movie.videos.count})", "#videos", class: "nav-link", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Posters (#{@movie.poster_count})", "#posters", class: "nav-link", data: { toggle: "tab" } %></li>
+    <li class="nav-item"><%= link_to "Backdrops (#{@movie.backdrop_count})", "#backdrops", class: "nav-link", data: { toggle: "tab" } %></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" role="tabpanel" id="cast">
+      <%= render "credits", credits: @credits %>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="videos">
+      <%= render "videos", videos: @videos %>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="posters">
+      <div class="row my-4" data-behavior="gallery">
+        <% if @movie.poster? %>
+          <%= render "image", thumbnail: @movie.poster_url("w500"), url: @movie.poster_url %>
+        <% end %>
+
+        <%= render partial: "image", collection: @posters %>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" role="tabpanel" id="backdrops">
+      <div class="row my-4" data-behavior="gallery">
+        <% if @movie.backdrop? %>
+          <%= render "image", thumbnail: @movie.backdrop_url("w500"), url: @movie.backdrop_url %>
+        <% end %>
+
+        <%= render partial: "image", collection: @backdrops %>
+      </div>
+    </div>
+  </div>
+</div>

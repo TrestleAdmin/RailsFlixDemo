@@ -1,0 +1,9 @@
+<div class="row my-4">
+  <% videos.each do |video| %>
+    <div class="col-6 col-sm-4 col-md-3 my-3">
+      <div class="embed-responsive embed-responsive-16by9">
+        <%= link_to image_tag(video.thumbnail, class: "embed-responsive-item"), video.url, data: { behavior: "video" } %>
+      </div>
+    </div>
+  <% end %>
+</div>

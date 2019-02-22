@@ -1,0 +1,15 @@
+<ul class="list-group list-group-flush my-4 row flex-row">
+  <% credits.each do |credit| %>
+    <li class="list-group-item col-sm-6 col-md-4">
+      <div class="media">
+        <figure class="cast-image mr-3">
+          <%= image_tag credit.profile_url if credit.profile? %>
+        </figure>
+        <div class="media-body">
+          <h6 class="mt-2"><%= credit.name %></h6>
+          <p class="small text-muted mb-0"><%= credit.character %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

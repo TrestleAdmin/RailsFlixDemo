@@ -1,0 +1,15 @@
+<ul class="list-group list-group-flush my-4">
+  <% seasons.each do |season| %>
+    <li class="list-group-item">
+      <div class="media">
+        <figure class="season-image mr-4">
+          <%= image_tag season.poster_url("w500") if season.poster? %>
+        </figure>
+        <div class="media-body">
+          <h6 class="mt-2"><%= season.name %> (<%= pluralize(season.episode_count, "episode") %>)</h6>
+          <p class="small text-muted mb-0"><%= season.overview %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

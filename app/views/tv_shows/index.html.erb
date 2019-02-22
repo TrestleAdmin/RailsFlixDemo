@@ -1,0 +1,22 @@
+<% content_for(:title, "Listing TV Shows") %>
+
+<div class="container">
+  <div class="media-list my-5">
+    <% @tv_shows.each do |tv_show| %>
+      <div class="card media-card my-3">
+        <%= link_to image_tag(tv_show.poster_url("w500"), class: "card-img rounded-0", alt: ""), tv_show, class: "media-poster" %>
+
+        <div class="card-body">
+          <strong class="media-rating"><%= number_to_percentage(tv_show.vote_average * 10, precision: 0) %></strong>
+          <h5 class="card-title"><%= link_to tv_show.name, tv_show %></h5>
+          <p class="card-text"><%= truncate(tv_show.overview, length: 200) %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="d-flex mt-4">
+      <%= link_to_previous_page @tv_shows, "&larr; Previous Page".html_safe, class: "btn btn-outline-primary rounded-pill mr-auto" %>
+      <%= link_to_next_page @tv_shows, "Next Page &rarr;".html_safe, class: "btn btn-outline-primary rounded-pill ml-auto" %>
+    </div>
+  </div>
+</div>

@@ -10,11 +10,6 @@ class Movie < ApplicationRecord
     "Canceled"
   ]
 
-  has_many :credits, -> { ordered }, as: :media
-
-  has_many :videos, as: :media
-  has_many :images, as: :media
-
   has_and_belongs_to_many :genres, -> { alphabetical }, class_name: "Movie::Genre"
 
   validates :title, :status, presence: true
@@ -26,5 +21,9 @@ class Movie < ApplicationRecord
 
   def imdb_url
     "https://www.imdb.com/title/#{imdb_id}"
+  end
+
+  def to_param
+    [id, title.parameterize].join("-")
   end
 end

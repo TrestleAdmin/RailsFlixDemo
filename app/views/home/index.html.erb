@@ -1,0 +1,33 @@
+<div class="poster-grid-container shadow">
+  <div class="introduction">
+    <p class="lead">Welcome to the demo application for the <a href="https://trestle.io">Trestle admin framework</a></p>
+
+    <p>
+      Please feel free to browse around or log into the admin using:<br />
+      <small class="text-muted">demo@example.com / demo</small>
+    </p>
+
+    <div class="introduction-buttons">
+      <%= link_to "/admin", class: "btn btn-primary rounded-pill" do %>
+        <i class="fas fa-lock"></i>
+        Admin Login
+      <% end %>
+
+      <%= link_to "https://github.com/TrestleAdmin/trestle", class: "btn btn-trestle rounded-pill", target: "_blank" do %>
+        <i class="fab fa-github"></i>
+        Trestle on GitHub
+      <% end %>
+    </div>
+
+    <p>
+      The source code for this application is available on GitHub at:<br />
+      <%= link_to "https://github.com/TrestleAdmin/RailsFlixDemo", "https://github.com/TrestleAdmin/RailsFlixDemo", target: "_blank" %>
+    </p>
+  </div>
+
+  <ul class="poster-grid">
+    <% @posters.each do |poster| %>
+      <li><%= image_tag poster.poster_url("w342") %></li>
+    <% end %>
+  </ul>
+</div>

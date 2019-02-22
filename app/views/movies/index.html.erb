@@ -1,0 +1,23 @@
+<% content_for(:title, "Listing Movies") %>
+
+<div class="container">
+  <div class="media-list my-5">
+    <% @movies.each do |movie| %>
+      <div class="card media-card my-3">
+        <%= link_to image_tag(movie.poster_url("w500"), class: "card-img rounded-0", alt: ""), movie, class: "media-poster" %>
+
+        <div class="card-body">
+          <strong class="media-rating"><%= number_to_percentage(movie.vote_average * 10, precision: 0) %></strong>
+          <h5 class="card-title"><%= link_to movie.title, movie %></h5>
+          <h6 class="card-subtitle mb-2"><%= movie.tagline %></h6>
+          <p class="card-text"><%= truncate(movie.overview, length: 200) %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="d-flex mt-4">
+      <%= link_to_previous_page @movies, "&larr; Previous Page".html_safe, class: "btn btn-outline-primary rounded-pill mr-auto" %>
+      <%= link_to_next_page @movies, "Next Page &rarr;".html_safe, class: "btn btn-outline-primary rounded-pill ml-auto" %>
+    </div>
+  </div>
+</div>

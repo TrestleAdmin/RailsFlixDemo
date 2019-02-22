@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsFlix</title>
+    <title><%= [content_for(:title), "Rails Flix - Trestle demo application"].compact.join(" | ") %></title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+      <%= link_to "Rails Flix", "/", class: "navbar-brand" %>
+
+      <%= button_tag class: "navbar-toggler", data: { toggle: "collapse", target: "#primary-nav" }, aria: { controls: "primary-nav", expanded: false, label: "Toggle navigation" } do %>
+        <span class="navbar-toggler-icon"></span>
+      <% end %>
+
+      <div class="collapse navbar-collapse" id="primary-nav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><%= link_to "Movies", movies_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "TV Shows", tv_shows_path, class: "nav-link" %></li>
+        </ul>
+
+        <%= link_to "/admin", class: "btn btn-primary rounded-pill ml-auto" do %>
+          <i class="fas fa-lock"></i>
+          Admin Login
+        <% end %>
+
+        <%= link_to image_tag("trestle.svg", alt: "Trestle"), "https://trestle.io", target: "_blank", class: "trestle-logo" %>
+      </div>
+    </nav>
+
+    <div class="page-main">
+      <%= yield %>
+    </div>
+
+    <div class="page-footer bg-dark">
+      <p>Copyright &copy; <%= Date.today.year %> Sam Pohlenz — All rights reserved.</p>
+      <p class="text-muted">This product uses the TMDb API but is not endorsed or certified by TMDb.</p>
+    </div>
   </body>
 </html>

@@ -11,6 +11,28 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require jquery
+//= require bootstrap/js/dist/util
+//= require bootstrap/js/dist/collapse
+//= require bootstrap/js/dist/tab
+//= require magnific-popup/dist/jquery.magnific-popup
+
+$(document).on('ready turbolinks:load', function() {
+  $('[data-behavior="video"]').magnificPopup({
+    type: 'iframe',
+    preloader: false
+  })
+
+  $('[data-behavior="gallery"]').each(function() {
+    $(this).magnificPopup({
+      delegate: 'a',
+      type: 'image',
+      gallery: {
+        enabled: true,
+        navigationByImgClick: true,
+        preload: [0, 1]
+      }
+    })
+  })
+})

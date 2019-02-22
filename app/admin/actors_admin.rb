@@ -22,7 +22,7 @@ Trestle.resource(:actors) do
       avatar(fallback: actor.initials) { image_tag(actor.profile_url("w185")) if actor.profile? }
     end
     column :name, link: true
-    column :gender, align: :center do |actor|
+    column :gender, align: :center, sort: :gender do |actor|
       status_tag(actor.gender)
     end
     column :credits_count, header: "Credits", align: :center

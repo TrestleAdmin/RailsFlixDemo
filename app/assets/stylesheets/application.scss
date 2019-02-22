@@ -1,0 +1,295 @@
+$theme-colors: (
+  "primary": #e50914,
+  "trestle": #337ab7,
+  "dark": black
+);
+
+@import "bootstrap/scss/bootstrap";
+@import "magnific-popup/dist/magnific-popup";
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+
+  &.embed-responsive-item {
+    object-fit: cover;
+  }
+}
+
+.btn {
+  i {
+    margin-right: 0.25em;
+  }
+}
+
+.trestle-logo {
+  margin-left: 0.5rem;
+
+  img {
+    height: 2.25rem;
+  }
+}
+
+.page-main {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-grid-container {
+  flex: 1;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.shadow {
+    box-shadow: none !important;
+
+    &:after {
+      content: "";
+      background: radial-gradient(circle at center, rgba(black, 0.25), rgba(black, 0.75));
+    }
+  }
+
+  .poster-grid,
+  &.shadow:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .introduction {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.introduction {
+  max-width: 90%;
+  margin: 1rem;
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  background: rgba(black, 0.75);
+  color: white;
+  text-shadow: black 0 0 5px;
+
+  .btn {
+    text-shadow: none;
+  }
+
+  a:not(.btn) {
+    color: $gray-400;
+
+    &:hover, &:focus {
+      color: theme-color("primary");
+      text-decoration: none;
+    }
+  }
+
+  .text-muted {
+    color: $gray-500 !important;
+  }
+}
+
+.introduction-buttons {
+  margin: 2rem 0;
+
+  .btn + .btn {
+    margin-left: 1rem;
+  }
+
+  @include media-breakpoint-down(xs) {
+    margin: 1rem 0;
+
+    .btn {
+      display: block;
+      margin: 1rem 0 !important;
+    }
+  }
+}
+
+.poster-grid {
+  display: grid;
+  grid: auto / repeat(auto-fit, minmax(125px, 1fr));
+
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+}
+
+.navbar-dark {
+  .navbar-brand {
+    color: theme-color("primary");
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    &:hover, &:focus {
+      color: lighten(theme-color("primary"), 5%);
+    }
+  }
+}
+
+.page-footer {
+  color: #bbb;
+  text-align: center;
+  padding: 1rem;
+
+  p {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+}
+
+.media-card {
+  flex-direction: row;
+
+  .media-poster {
+    flex: 0 0 10%;
+
+    @include media-breakpoint-down(md) {
+      flex-basis: 20%;
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex-basis: 25%;
+    }
+  }
+
+  .media-rating {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+
+    width: 2.25rem;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    font-size: 0.65rem;
+  }
+}
+
+.media-banner {
+  position: relative;
+
+  .backdrop {
+    &, &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    z-index: -1;
+
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+
+    &:after {
+      content: "";
+      background: radial-gradient(circle at center, rgba(black, 0.5), rgba(black, 0.75));
+    }
+  }
+
+  .poster {
+    width: 100%;
+    box-shadow: rgba(black, 0.5) 0 0 20px;
+  }
+}
+
+.media-info {
+  color: white;
+  padding: 2rem 0;
+
+  p {
+    color: #ddd;
+  }
+
+  .media-rating {
+    float: right;
+  }
+}
+
+.media-rating {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 3rem;
+  background: theme-color("primary");
+  color: white;
+  border-radius: 50%;
+}
+
+.cast-image {
+  background: #eee;
+  margin: 0;
+
+  &, img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.season-image {
+  margin: 0;
+
+  img {
+    width: 100px;
+  }
+}
+
+.list-group-flush.row {
+  @include media-breakpoint-up(sm) {
+    .col-sm-6:nth-child(2) {
+      border-top: 0;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .col-md-4:nth-child(3) {
+      border-top: 0;
+    }
+  }
+}
