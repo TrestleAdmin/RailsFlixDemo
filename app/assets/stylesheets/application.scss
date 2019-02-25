@@ -52,6 +52,8 @@ img {
   align-items: center;
   justify-content: center;
 
+  background: black;
+
   &.shadow {
     box-shadow: none !important;
 
@@ -129,6 +131,7 @@ img {
 
   li {
     list-style: none;
+    transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
   }
 
   img {

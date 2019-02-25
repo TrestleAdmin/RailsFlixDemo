@@ -19,6 +19,12 @@
 //= require magnific-popup/dist/jquery.magnific-popup
 
 $(document).on('ready turbolinks:load', function() {
+  $('.poster-grid li').css({ opacity: 0, transform: "scale(0.25)" })
+  $('.poster-grid img').on('load', function() {
+    $(this).parent().css({ opacity: 1, transform: "scale(1)" })
+  })
+
+
   $('[data-behavior="video"]').magnificPopup({
     type: 'iframe',
     preloader: false
