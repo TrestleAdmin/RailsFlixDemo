@@ -5,6 +5,8 @@ Rails Flix is a simple application created to demonstrate the [Trestle admin fra
 > Admin: https://demo.trestle.io/admin (`demo@example.com` / `demo`)<br />
 > Frontend: https://demo.trestle.io
 
+Along with the core [trestle]((https://github.com/TrestleAdmin/trestle)) gem, this demo also uses [trestle-auth](https://github.com/TrestleAdmin/trestle-auth) (for admin authentication) and [trestle-search](https://github.com/TrestleAdmin/trestle-search) (for search in combination with [pg_search](https://github.com/Casecommons/pg_search)).
+
 
 ## Code of Interest
 
