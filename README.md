@@ -1,5 +1,19 @@
 # RailsFlix :: Trestle Demo Application
 
+Rails Flix is a simple application created to demonstrate the [Trestle admin framework](https://github.com/TrestleAdmin/trestle).
+
+> Admin: https://demo.trestle.io/admin (`demo@example.com` / `demo`)<br />
+> Frontend: https://demo.trestle.io
+
+
+## Code of Interest
+
+1. Trestle admin definitions located in [app/admin](app/admin)
+2. Custom view partials used by admins at [app/views/admin/shared](app/views/admin/shared)
+3. Custom JS/CSS for admin in [app/assets/javascript/trestle](app/assets/javascript/trestle) and [app/assets/stylesheets/trestle](app/assets/stylesheets/trestle)
+4. Data models in [app/models](app/models) (all fairly standard ActiveRecord)
+
+
 ## Local Development Setup
 
 Requirements: Ruby 2.6.1, PostgreSQL, Yarn
