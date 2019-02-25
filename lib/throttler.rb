@@ -10,6 +10,9 @@ class Throttler
   def t
     throttle!
     yield
+  rescue RestClient::TooManyRequests
+    sleep 10
+    retry
   end
 
   def throttle!
