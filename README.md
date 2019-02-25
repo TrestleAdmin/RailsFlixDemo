@@ -47,3 +47,8 @@ Requirements: Ruby 2.6.1, PostgreSQL, Yarn
 6. Login to the admin at http://localhost:3000/admin. The default account created in 4c) is:
 
     demo@example.com / demo
+
+
+## License
+
+This application is available as open source under the terms of the [LGPLv3 License](https://opensource.org/licenses/LGPL-3.0).
