@@ -1,24 +1,35 @@
-# README
+# RailsFlix :: Trestle Demo Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Local Development Setup
 
-Things you may want to cover:
+Requirements: Ruby 2.6.1, PostgreSQL, Yarn
 
-* Ruby version
+1. Clone the repository
 
-* System dependencies
+2. Run `bundle install` to install Ruby dependencies
 
-* Configuration
+3. Run `yarn install` to install JavaScript/CSS dependencies
 
-* Database creation
+4. (Optional) Seed the database from TheMovieDB.org
 
-* Database initialization
+    a) Register for an account at https://www.themoviedb.org/account/signup
 
-* How to run the test suite
+    b) Obtain your API key at https://www.themoviedb.org/settings/api. Either add this to a `.env` file in the project root as `TMDB_API_KEY`, or specify it on the command line as in the following commands.
 
-* Services (job queues, cache servers, search engines, etc.)
+    c) Create the database (default: `RailsFlix_development`), migrate and seed:
 
-* Deployment instructions
+        $ TMDB_API_KEY={{YOUR_API_KEY}} bin/rails db:setup
 
-* ...
+    d) You can fetch more (or less) data from TheMovieDB.org using the PAGES environment variable (1 page = 20 results)
+
+        $ TMDB_API_KEY={{YOUR_API_KEY}} PAGES=1 bin/rails db:setup
+
+    > Note: If you choose not to seed the database, you will need to manually create an admin account. See `db/seeds.rb` or the [trestle-auth README](https://github.com/TrestleAdmin/trestle-auth).
+
+5. Start the rails server
+
+        $ bin/rails server
+
+6. Login to the admin at http://localhost:3000/admin. The default account created in 4c) is:
+
+    demo@example.com / demo
