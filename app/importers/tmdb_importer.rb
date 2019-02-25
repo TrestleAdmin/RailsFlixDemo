@@ -10,10 +10,10 @@ class TmdbImporter
 
   def import
     (1..@pages).each do |page|
-      popular = @throttle.t { @scope.popular(page: page) }
+      popular = throttle { @scope.popular(page: page) }
 
       popular.results.each do |stub|
-        tmdb = @throttle.t { @scope.detail(stub.id) }
+        tmdb = throttle { @scope.detail(stub.id) }
 
         yield tmdb
 
@@ -22,27 +22,35 @@ class TmdbImporter
         threads = []
 
         threads << Thread.new {
-          credits = @throttle.t { @scope.cast(stub.id) }
+          credits = throttle { @scope.cast(stub.id) }
           CreditsImporter.new(instance).import(credits)
         }
 
         threads << Thread.new {
-          videos = @throttle.t { @scope.videos( stub.id, language: "en") }
+          videos = throttle { @scope.videos( stub.id, language: "en") }
           VideosImporter.new(instance).import(videos)
         }
 
         threads << Thread.new {
-          posters = @throttle.t { @scope.posters(stub.id, language: "en") }
+          posters = throttle { @scope.posters(stub.id, language: "en") }
           ImagesImporter.new(instance).import(posters, "Poster")
         }
 
         threads << Thread.new {
-          backdrops = @throttle.t { @scope.backdrops(stub.id, language: "en") }
+          backdrops = throttle { @scope.backdrops(stub.id, language: "en") }
           ImagesImporter.new(instance).import(backdrops, "Backdrop")
         }
 
         threads.each(&:join)
       end
     end
+  end
+
+private
+  def throttle
+    @throttle.t { yield }
+  rescue Tmdb::Error
+    sleep 10
+    retry
   end
 end
