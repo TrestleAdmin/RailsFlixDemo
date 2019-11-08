@@ -1,7 +1,7 @@
 Trestle.resource(:genres) do
   menu do
     group :configuration, priority: :last do
-      item :genres, icon: "fa fa-star"
+      item :genres, icon: "fa fa-theater-masks"
     end
   end
 

@@ -17,7 +17,7 @@ Trestle.resource(:movies) do
     column :poster, header: nil, align: :center, class: "poster-column" do |movie|
       admin_link_to(image_tag(movie.poster_url("w154"), class: "poster"), movie) if movie.poster?
     end
-    column :title, link: true, sort: :title do |movie|
+    column :title, link: true, sort: :title, class: "media-title-column" do |movie|
       safe_join([
         content_tag(:strong, movie.title),
         content_tag(:small, movie.credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
@@ -66,11 +66,11 @@ Trestle.resource(:movies) do
       end if movie.poster?
 
       static_field :tmdb, label: "TheMovieDB.org" do
-        link_to movie.tmdb_id, movie.tmdb_url, target: "_blank"
+        link_to movie.tmdb_id, movie.tmdb_url, target: "_blank", class: "external-link"
       end if movie.tmdb_id?
 
       static_field :imdb, label: "IMDB.com" do
-        link_to movie.imdb_id, movie.imdb_url, target: "_blank"
+        link_to movie.imdb_id, movie.imdb_url, target: "_blank", class: "external-link"
       end if movie.imdb_id?
 
       select :status, Movie::STATUSES

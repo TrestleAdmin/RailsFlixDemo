@@ -17,7 +17,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
     column :poster, header: nil, align: :center, class: "poster-column" do |tv_show|
       admin_link_to(image_tag(tv_show.poster_url("w154"), class: "poster"), tv_show) if tv_show.poster?
     end
-    column :title, link: true, sort: :name do |tv_show|
+    column :title, link: true, sort: :name, class: "media-title-column" do |tv_show|
       safe_join([
         content_tag(:strong, tv_show.name),
         content_tag(:small, tv_show.credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
@@ -69,7 +69,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
       end if tv_show.poster?
 
       static_field :tmdb, label: "TheMovieDB.org" do
-        link_to tv_show.tmdb_id, tv_show.tmdb_url, target: "_blank"
+        link_to tv_show.tmdb_id, tv_show.tmdb_url, target: "_blank", class: "external-link"
       end if tv_show.tmdb_id?
 
       select :status, TVShow::STATUSES

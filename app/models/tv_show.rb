@@ -1,7 +1,7 @@
 class TVShow < ApplicationRecord
   include Media
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :pg_search, against: [:name, :overview], using: { tsearch: { prefix: true, tsvector_column: "tsv" } }
 
   STATUSES = [

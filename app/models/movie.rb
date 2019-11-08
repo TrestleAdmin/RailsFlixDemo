@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
   include Media
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :pg_search, against: [:title, :tagline, :overview], using: { tsearch: { prefix: true, tsvector_column: "tsv" } }
 
   STATUSES = [

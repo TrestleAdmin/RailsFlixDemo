@@ -1,7 +1,7 @@
 Trestle.resource(:actors) do
   menu do
     group :library do
-      item :actors, icon: "fa fa-male", priority: :last
+      item :actors, icon: "fa fa-user-friends", priority: :last
     end
   end
 
