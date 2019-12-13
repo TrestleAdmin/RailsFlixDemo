@@ -9,7 +9,7 @@ class Actor < ApplicationRecord
   validates :name, presence: true
   validates :tmdb_id, uniqueness: { allow_blank: true }
 
-  enum gender: { "Not specified" => 0, "Female" => 1, "Male" => 2 }
+  enum gender: { "Not specified" => 0, "Female" => 1, "Male" => 2, "Non-Binary" => 3 }
 
   def initials
     name.split.map(&:first).join
