@@ -12,7 +12,7 @@ Along with the core [trestle]((https://github.com/TrestleAdmin/trestle)) gem, th
 
 1. Trestle admin definitions located in [app/admin](app/admin)
 2. Custom view partials used by admins at [app/views/admin/shared](app/views/admin/shared)
-3. Custom JS/CSS for admin in [app/assets/javascript/trestle](app/assets/javascript/trestle) and [app/assets/stylesheets/trestle](app/assets/stylesheets/trestle)
+3. Custom JS/CSS for admin in [app/assets/javascripts/trestle](app/assets/javascripts/trestle) and [app/assets/stylesheets/trestle](app/assets/stylesheets/trestle)
 4. Data models in [app/models](app/models) (all fairly standard ActiveRecord)
 
 
