@@ -18,7 +18,7 @@ Along with the core [trestle]((https://github.com/TrestleAdmin/trestle)) gem, th
 
 ## Local Development Setup
 
-Requirements: Ruby 2.6.1, PostgreSQL, Yarn
+Requirements: Ruby 2.6.5, PostgreSQL, Yarn
 
 1. Clone the repository
 
