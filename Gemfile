@@ -50,8 +50,8 @@ gem 'dotenv-rails'
 
 # Trestle admin framework
 gem 'trestle'
-gem 'trestle-auth', '0.3.0'
-gem 'trestle-search', '0.4.0'
+gem 'trestle-auth'
+gem 'trestle-search'
 
 # Model search
 gem 'pg_search'
