@@ -20,7 +20,7 @@ Trestle.resource(:movies) do
     column :title, link: true, sort: :title, class: "media-title-column" do |movie|
       safe_join([
         content_tag(:strong, movie.title),
-        content_tag(:small, movie.credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
+        content_tag(:small, movie.credits.top_billing.map(&:name).compact.join(", "), class: "text-muted hidden-xs")
       ], "<br />".html_safe)
     end
     column :genres, format: :tags, class: "hidden-xs" do |movie|
