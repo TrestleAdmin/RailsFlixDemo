@@ -53,8 +53,12 @@ Trestle.resource(:tv_shows, model: TVShow) do
       end
     end
 
-    tab :acting_credits, badge: tv_show.acting_credits.count do
-      table CreditsAdmin.table, collection: tv_show.acting_credits.includes(:person)
+    tab :credits, badge: tv_show.acting_credits.count do
+      table ActingCreditsAdmin.table, collection: tv_show.acting_credits.includes(:person)
+    end
+
+    tab :crew, badge: tv_show.crew_credits.count do
+      table CrewCreditsAdmin.table, collection: tv_show.crew_credits.includes(:person)
     end
 
     tab :seasons, badge: tv_show.seasons.count do

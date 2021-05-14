@@ -3,6 +3,7 @@ module Media
 
   included do
     has_many :acting_credits, -> { actors.ordered }, as: :media
+    has_many :crew_credits, -> { crew.ordered }, as: :media
 
     has_many :videos, as: :media
     has_many :images, as: :media

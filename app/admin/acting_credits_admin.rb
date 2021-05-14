@@ -1,4 +1,4 @@
-Trestle.resource(:credits) do
+Trestle.resource(:acting_credits) do
   form dialog: true do |credit|
     row do
       col(sm: 4) do

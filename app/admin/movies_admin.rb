@@ -54,8 +54,12 @@ Trestle.resource(:movies) do
       end
     end
 
-    tab :acting_credits, badge: movie.acting_credits.count do
-      table CreditsAdmin.table, collection: movie.acting_credits.includes(:person)
+    tab :credits, badge: movie.acting_credits.count do
+      table ActingCreditsAdmin.table, collection: movie.acting_credits.includes(:person)
+    end
+
+    tab :crew, badge: movie.crew_credits.count do
+      table CrewCreditsAdmin.table, collection: movie.crew_credits.includes(:person)
     end
 
     tab :media, partial: "admin/shared/media", badge: movie.media_count

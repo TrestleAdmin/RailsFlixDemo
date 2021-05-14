@@ -27,6 +27,11 @@ class TmdbImporter
         }
 
         threads << Thread.new {
+          crew = throttle { @scope.crew(stub.id) }
+          CrewImporter.new(instance).import(crew)
+        }
+
+        threads << Thread.new {
           videos = throttle { @scope.videos(stub.id, language: "en") }
           VideosImporter.new(instance).import(videos)
         }
