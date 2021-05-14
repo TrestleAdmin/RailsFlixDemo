@@ -20,7 +20,7 @@ Trestle.resource(:movies) do
     column :title, link: true, sort: :title, class: "media-title-column" do |movie|
       safe_join([
         content_tag(:strong, movie.title),
-        content_tag(:small, movie.credits.top_billing.map(&:name).compact.join(", "), class: "text-muted hidden-xs")
+        content_tag(:small, movie.acting_credits.top_billing.map(&:name).compact.join(", "), class: "text-muted hidden-xs")
       ], "<br />".html_safe)
     end
     column :genres, format: :tags, class: "hidden-xs" do |movie|
@@ -54,8 +54,8 @@ Trestle.resource(:movies) do
       end
     end
 
-    tab :credits, badge: movie.credits.count do
-      table CreditsAdmin.table, collection: movie.credits.includes(:actor)
+    tab :acting_credits, badge: movie.acting_credits.count do
+      table CreditsAdmin.table, collection: movie.acting_credits.includes(:person)
     end
 
     tab :media, partial: "admin/shared/media", badge: movie.media_count

@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_031028) do
+ActiveRecord::Schema.define(version: 2021_05_14_114729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "actors", force: :cascade do |t|
-    t.integer "tmdb_id"
-    t.string "name"
-    t.integer "gender", default: 0
-    t.string "profile_path"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.tsvector "tsv"
-    t.index ["name"], name: "index_actors_on_name"
-    t.index ["tsv"], name: "index_actors_on_tsv", using: :gin
-  end
 
   create_table "administrators", force: :cascade do |t|
     t.string "email"
@@ -41,13 +29,14 @@ ActiveRecord::Schema.define(version: 2019_02_22_031028) do
   create_table "credits", force: :cascade do |t|
     t.string "media_type"
     t.bigint "media_id"
-    t.bigint "actor_id"
-    t.string "character"
+    t.bigint "person_id"
+    t.string "role"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["actor_id"], name: "index_credits_on_actor_id"
+    t.string "type"
     t.index ["media_type", "media_id"], name: "index_credits_on_media_type_and_media_id"
+    t.index ["person_id"], name: "index_credits_on_person_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -106,6 +95,19 @@ ActiveRecord::Schema.define(version: 2019_02_22_031028) do
     t.index ["title"], name: "index_movies_on_title"
     t.index ["tsv"], name: "index_movies_on_tsv", using: :gin
     t.index ["vote_average"], name: "index_movies_on_vote_average"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.integer "tmdb_id"
+    t.string "name"
+    t.integer "gender", default: 0
+    t.string "profile_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.tsvector "tsv"
+    t.string "type"
+    t.index ["name"], name: "index_people_on_name"
+    t.index ["tsv"], name: "index_people_on_tsv", using: :gin
   end
 
   create_table "tv_show_seasons", force: :cascade do |t|

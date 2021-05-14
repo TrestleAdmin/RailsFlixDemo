@@ -14,7 +14,7 @@ Trestle.resource(:actors) do
   end
 
   decorate_collection do |collection|
-    collection.group(:id).left_outer_joins(:credits).select("actors.*, COUNT(credits.actor_id) AS credits_count")
+    collection.group(:id).left_outer_joins(:credits).select("people.*, COUNT(credits.person_id) AS credits_count")
   end
 
   sort_column(:credits_count) do |collection, order|

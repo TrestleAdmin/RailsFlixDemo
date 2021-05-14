@@ -2,7 +2,7 @@ module Media
   extend ActiveSupport::Concern
 
   included do
-    has_many :credits, -> { ordered }, as: :media
+    has_many :acting_credits, -> { actors.ordered }, as: :media
 
     has_many :videos, as: :media
     has_many :images, as: :media

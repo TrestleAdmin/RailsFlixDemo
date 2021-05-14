@@ -6,7 +6,7 @@ class MoviesController < MediaController
   def show
     @movie = Movie.find(params[:id])
 
-    @credits   = @movie.credits.includes(:actor)
+    @credits   = @movie.acting_credits.includes(:person)
     @videos    = @movie.videos
     @posters   = @movie.images.posters
     @backdrops = @movie.images.backdrops

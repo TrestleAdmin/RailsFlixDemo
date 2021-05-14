@@ -20,7 +20,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
     column :title, link: true, sort: :name, class: "media-title-column" do |tv_show|
       safe_join([
         content_tag(:strong, tv_show.name),
-        content_tag(:small, tv_show.credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
+        content_tag(:small, tv_show.acting_credits.top_billing.map(&:name).join(", "), class: "text-muted hidden-xs")
       ], "<br />".html_safe)
     end
     column :genres, format: :tags, class: "hidden-xs" do |tv_show|
@@ -53,8 +53,8 @@ Trestle.resource(:tv_shows, model: TVShow) do
       end
     end
 
-    tab :credits, badge: tv_show.credits.count do
-      table CreditsAdmin.table, collection: tv_show.credits.includes(:actor)
+    tab :acting_credits, badge: tv_show.acting_credits.count do
+      table CreditsAdmin.table, collection: tv_show.acting_credits.includes(:person)
     end
 
     tab :seasons, badge: tv_show.seasons.count do

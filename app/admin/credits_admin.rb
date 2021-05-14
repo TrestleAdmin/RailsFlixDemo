@@ -8,7 +8,7 @@ Trestle.resource(:credits) do
       end
 
       col(sm: 8) do
-        select :actor_id, Actor.alphabetical
+        select :person_id, Person.alphabetical
 
         row do
           col(sm: 9) { text_field :character }
