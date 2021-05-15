@@ -3,7 +3,13 @@ module Media
 
   included do
     has_many :acting_credits, -> { actors.ordered }, as: :media
-    has_many :crew_credits, -> { crew.ordered }, as: :media
+    has_many :crew_credits, -> { crew }, as: :media
+
+    has_many :directing_credits, -> { crew.directors }, as: :media, class_name: "CrewCredit"
+    has_many :directors, -> { alphabetical }, through: :directing_credits, source: :person
+
+    has_one :lead_directing_credit, -> { crew.directors }, as: :media, class_name: "CrewCredit"
+    has_one :lead_director, -> { alphabetical }, through: :lead_directing_credit, source: :person
 
     has_many :videos, as: :media
     has_many :images, as: :media

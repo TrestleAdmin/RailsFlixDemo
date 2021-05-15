@@ -6,11 +6,15 @@ Trestle.resource(:movies) do
   end
 
   collection do
-    model.includes(:genres)
+    model.includes(:genres, :directors)
   end
 
   search do |query|
     query ? collection.pg_search(query) : collection
+  end
+
+  sort_column :director do |collection, order|
+    collection.joins(:lead_director).merge(Person.order(name: order))
   end
 
   table do
@@ -22,6 +26,9 @@ Trestle.resource(:movies) do
         content_tag(:strong, movie.title),
         content_tag(:small, movie.acting_credits.top_billing.map(&:name).compact.join(", "), class: "text-muted hidden-xs")
       ], "<br />".html_safe)
+    end
+    column :directors, sort: :director do |movie|
+      movie.directors.pluck(:name).to_sentence
     end
     column :genres, format: :tags, class: "hidden-xs" do |movie|
       movie.genres.map(&:name)
