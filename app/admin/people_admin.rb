@@ -1,7 +1,7 @@
-Trestle.resource(:actors) do
+Trestle.resource(:people) do
   menu do
     group :library do
-      item :actors, icon: "fa fa-user-friends", priority: :last
+      item :people, icon: "fa fa-user-friends", priority: :last
     end
   end
 
@@ -43,7 +43,7 @@ Trestle.resource(:actors) do
 
       col(sm: 8) do
         text_field :name
-        select :gender, Actor.genders.keys.map { |w| [w.humanize, w] }
+        select :gender, Person.genders.keys.map { |w| [w.humanize, w] }
       end
     end
   end
