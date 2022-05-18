@@ -14,4 +14,8 @@ class Video < ApplicationRecord
       "https://img.youtube.com/vi/#{key}/hqdefault.jpg"
     end
   end
+
+  def thumbnail?
+    thumbnail.present?
+  end
 end
