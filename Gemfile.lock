@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/TrestleAdmin/trestle-auth.git
-  revision: fa0158e65490abcacb288f4f79e4f521db57686b
+  revision: 5894eb829eff4b2a30387fd216f2b8daf317775e
   specs:
     trestle-auth (0.4.4)
       bcrypt (~> 3.1.7)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/TrestleAdmin/trestle-search.git
-  revision: a738b7a1bfc5d37a268ea042584e73520bbea703
+  revision: 026f36eec8ef0d794fc829ce9545b5e9d6dd1e57
   specs:
     trestle-search (0.4.3)
       trestle (~> 0.9.0, >= 0.9.3)
