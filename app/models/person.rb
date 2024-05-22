@@ -7,7 +7,6 @@ class Person < ApplicationRecord
   scope :alphabetical, -> { order(name: :asc) }
 
   validates :name, presence: true
-  validates :tmdb_id, uniqueness: { allow_blank: true }
 
   enum gender: { "Not specified" => 0, "Female" => 1, "Male" => 2, "Non-Binary" => 3 }
 
@@ -21,5 +20,11 @@ class Person < ApplicationRecord
 
   def profile_url(version="original")
     tmdb_image(profile_path, version)
+  end
+
+  def self.lookup(tmdb_id, **attrs)
+    create_or_find_by!(tmdb_id: tmdb_id) do |person|
+      person.attributes = attrs
+    end
   end
 end
