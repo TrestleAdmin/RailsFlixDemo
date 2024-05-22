@@ -12,7 +12,7 @@ class AddTsvectorIndexToActors < ActiveRecord::Migration[5.2]
         SQL
 
         # Trigger re-index on existing actors
-        execute("UPDATE actors SET id = id")
+        execute("UPDATE actors SET name = name")
       end
 
       dir.down { execute("DROP TRIGGER IF EXISTS tsvectorupdate ON actors") }

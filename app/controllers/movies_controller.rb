@@ -1,4 +1,7 @@
 class MoviesController < MediaController
+  include Trestle::Auth::Controller::Authentication
+  before_action :require_authenticated_user
+
   def index
     @movies = paginate(Movie)
   end

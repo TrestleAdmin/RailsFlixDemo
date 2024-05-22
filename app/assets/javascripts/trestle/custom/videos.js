@@ -1,16 +1,16 @@
-Trestle.init(function(e, root) {
-  $(root).find('[data-behavior~="video-gallery"]').magnificPopup({
-    delegate: 'a',
-    type: 'iframe',
-    closeOnContentClick: false,
-    closeBtnInside: false,
-    mainClass: 'mfp-with-zoom mfp-img-mobile',
-    gallery: {
-      enabled: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 150
+class VideoGalleryController extends Trestle.Controllers.gallery {
+  static targets = ["video"]
+
+  get options () {
+    return {
+      ...super.options,
+      type: 'iframe'
     }
-  });
-});
+  }
+
+  get lightboxTarget () {
+    return this.videoTargets
+  }
+}
+
+Stimulus.register('video-gallery', VideoGalleryController)

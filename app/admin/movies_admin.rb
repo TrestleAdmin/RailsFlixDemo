@@ -73,7 +73,7 @@ Trestle.resource(:movies) do
 
     sidebar do
       form_group :poster, label: false do
-        link_to image_tag(movie.poster_url("w500")), movie.poster_url, data: { behavior: "zoom" }
+        link_to image_tag(movie.poster_url("w500")), movie.poster_url, data: { controller: "lightbox" }
       end if movie.poster?
 
       static_field :tmdb, label: "TheMovieDB.org" do

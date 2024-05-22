@@ -1,8 +1,5 @@
 Trestle.resource(:seasons, scope: TVShow) do
   table do
-    row do
-      { data: { dialog_class: "modal-lg" } }
-    end
     column :poster, header: nil, align: :center, class: "poster-column" do |season|
       admin_link_to(image_tag(season.poster_url("h100"), class: "poster"), season, data: { dialog_class: "modal-lg" }) if season.poster?
     end
@@ -14,7 +11,7 @@ Trestle.resource(:seasons, scope: TVShow) do
     actions
   end
 
-  form dialog: true do |season|
+  form modal: { class: "modal-lg" } do |season|
     row do
       col(sm: 4) do
         form_group :poster, label: false do

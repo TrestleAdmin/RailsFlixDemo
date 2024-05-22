@@ -18,7 +18,7 @@ Trestle.resource(:genres) do
     actions
   end
 
-  form dialog: true do |genre|
+  form modal: true do |genre|
     select :type, { "Movie" => "Movie::Genre", "TV Show" => "TVShow::Genre" }
     text_field :name
   end
