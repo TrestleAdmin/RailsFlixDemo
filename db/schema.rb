@@ -10,10 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_22_065353) do
+ActiveRecord::Schema[7.0].define(version: 2021_05_14_120638) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "fuzzystrmatch"
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "administrators", force: :cascade do |t|
@@ -94,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_065353) do
     t.tsvector "tsv"
     t.index ["release_date"], name: "index_movies_on_release_date"
     t.index ["title"], name: "index_movies_on_title"
+    t.index ["tmdb_id"], name: "index_movies_on_tmdb_id"
     t.index ["tsv"], name: "index_movies_on_tsv", using: :gin
     t.index ["vote_average"], name: "index_movies_on_vote_average"
   end
@@ -107,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_065353) do
     t.datetime "updated_at", precision: nil, null: false
     t.tsvector "tsv"
     t.index ["name"], name: "index_people_on_name"
-    t.index ["tmdb_id"], name: "index_people_on_tmdb_id", unique: true
+    t.index ["tmdb_id"], name: "index_people_on_tmdb_id"
     t.index ["tsv"], name: "index_people_on_tsv", using: :gin
   end
 
@@ -141,6 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_065353) do
     t.datetime "updated_at", precision: nil, null: false
     t.tsvector "tsv"
     t.index ["name"], name: "index_tv_shows_on_name"
+    t.index ["tmdb_id"], name: "index_tv_shows_on_tmdb_id"
     t.index ["tsv"], name: "index_tv_shows_on_tsv", using: :gin
     t.index ["vote_average"], name: "index_tv_shows_on_vote_average"
   end

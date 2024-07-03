@@ -1,9 +1,9 @@
 Trestle.resource(:acting_credits) do
-  form dialog: true do |credit|
+  form modal: true do |credit|
     row do
       col(sm: 4) do
         form_group :profile, label: false do
-          link_to image_tag(credit.profile_url), credit.profile_url, data: { behavior: "zoom" }
+          link_to image_tag(credit.profile_url), credit.profile_url, data: { controller: "lightbox" }
         end if credit.profile?
       end
 

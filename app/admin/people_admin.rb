@@ -18,7 +18,7 @@ Trestle.resource(:people) do
   end
 
   sort_column(:credits_count) do |collection, order|
-    collection.reorder("credits_count #{order}")
+    collection.reorder(credits_count: order)
   end
 
   table do
@@ -33,11 +33,11 @@ Trestle.resource(:people) do
     actions
   end
 
-  form dialog: true do |actor|
+  form modal: true do |actor|
     row do
       col(sm: 4) do
         form_group :profile, label: false do
-          link_to image_tag(actor.profile_url), actor.profile_url, data: { behavior: "zoom" }
+          link_to image_tag(actor.profile_url), actor.profile_url, data: { controller: "lightbox" }
         end if actor.profile?
       end
 

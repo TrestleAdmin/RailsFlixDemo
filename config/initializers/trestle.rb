@@ -15,6 +15,11 @@ Trestle.configure do |config|
   #
   # config.site_logo_small = "logo-small.png"
 
+  # Define primary and secondary theme colors. Color values may be specified
+  # as either 3- or 6-digit hex codes, or rgb/hsl() triplets.
+  #
+  config.theme = { primary: "#e50914" }
+
   # Set the text shown in the page footer within the admin.
   # Defaults to 'Powered by Trestle'.
   #
@@ -179,6 +184,8 @@ Trestle.configure do |config|
   # config.auth.locale = ->(user) {
   #   user.locale if user.respond_to?(:locale)
   # }
+
+  config.auth.login_url = -> { trestle.login_url }
 
   # Customize the method for determining the user's time zone.
   # Defaults to user.time_zone (if the method is defined).

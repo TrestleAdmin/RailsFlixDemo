@@ -8,11 +8,11 @@ class AddTsvectorIndexToTVShows < ActiveRecord::Migration[5.2]
         execute <<-SQL
           CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON tv_shows
           FOR EACH ROW EXECUTE PROCEDURE
-          tsvector_update_trigger(tsv, 'pg_catalog.simple', name, overview);
+          tsvector_update_trigger(tsv, 'pg_catalog.english', name, overview);
         SQL
 
         # Trigger re-index on existing TV shows
-        execute("UPDATE tv_shows SET id = id")
+        execute("UPDATE tv_shows SET name = name")
       end
 
       dir.down { execute("DROP TRIGGER IF EXISTS tsvectorupdate ON tv_shows") }

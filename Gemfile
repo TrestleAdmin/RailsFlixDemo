@@ -60,9 +60,9 @@ end
 gem 'dotenv-rails'
 
 # Trestle admin framework
-gem 'trestle', github: 'TrestleAdmin/trestle'
-gem 'trestle-auth', github: 'TrestleAdmin/trestle-auth'
-gem 'trestle-search', github: 'TrestleAdmin/trestle-search'
+gem 'trestle', '~> 0.10.0.pre'
+gem 'trestle-auth', '~> 0.5.0.pre'
+gem 'trestle-search', '~> 0.5.0.pre'
 
 # Model search
 gem 'pg_search'

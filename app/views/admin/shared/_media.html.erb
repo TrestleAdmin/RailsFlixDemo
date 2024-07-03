@@ -1,42 +1,46 @@
 <h3>Videos</h3>
 
-<ul class="media-grid" data-behavior="video-gallery">
+<ul class="media-grid" data-controller="gallery" style="--media-grid-aspect-ratio: 16 / 9">
   <% instance.videos.select(&:thumbnail?).each do |video| %>
     <li>
-      <figure class="fill zoom aspect-ratio-16x9">
-        <%= link_to image_tag(video.thumbnail), video.url %>
+      <figure class="fill zoom">
+        <%= link_to image_tag(video.thumbnail), video.url, data: { gallery_target: "image", width: 1600, height: 900 } %>
       </figure>
     </li>
   <% end %>
 </ul>
+
+<hr />
 
 <h3>Posters</h3>
 
-<ul class="media-grid" data-behavior="gallery">
+<ul class="media-grid" data-controller="gallery">
   <% instance.images.posters.each do |image| %>
     <li>
       <figure class="zoom">
-        <%= link_to image_tag(image.url("w500")), image.url %>
+        <%= link_to image_tag(image.url("w500")), image.url, data: { gallery_target: "image" } %>
       </figure>
     </li>
   <% end %>
 </ul>
 
+<hr />
+
 <h3>Backdrops</h3>
 
-<ul class="media-grid" data-behavior="gallery">
+<ul class="media-grid" data-controller="gallery" style="--media-grid-aspect-ratio: 16 / 9">
   <% if instance.backdrop? %>
     <li>
-      <figure class="fill zoom aspect-ratio-16x9">
-      <%= link_to image_tag(instance.backdrop_url("w780")), instance.backdrop_url %>
+      <figure class="fill zoom">
+        <%= link_to image_tag(instance.backdrop_url("w780")), instance.backdrop_url, data: { gallery_target: "image" } %>
       </figure>
     </li>
   <% end %>
 
   <% instance.images.backdrops.each do |image| %>
     <li>
-      <figure class="fill zoom aspect-ratio-16x9">
-        <%= link_to image_tag(image.url("w780")), image.url %>
+      <figure class="fill zoom">
+        <%= link_to image_tag(image.url("w780")), image.url, data: { gallery_target: "image" } %>
       </figure>
     </li>
   <% end %>

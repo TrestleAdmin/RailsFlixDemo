@@ -69,7 +69,7 @@ Trestle.resource(:tv_shows, model: TVShow) do
 
     sidebar do
       form_group :poster, label: false do
-        link_to image_tag(tv_show.poster_url("w500")), tv_show.poster_url, data: { behavior: "zoom" }
+        link_to image_tag(tv_show.poster_url("w500")), tv_show.poster_url, data: { controller: "lightbox" }
       end if tv_show.poster?
 
       static_field :tmdb, label: "TheMovieDB.org" do

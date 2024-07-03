@@ -8,11 +8,11 @@ class AddTsvectorIndexToMovies < ActiveRecord::Migration[5.2]
         execute <<-SQL
           CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON movies
           FOR EACH ROW EXECUTE PROCEDURE
-          tsvector_update_trigger(tsv, 'pg_catalog.simple', title, tagline, overview);
+          tsvector_update_trigger(tsv, 'pg_catalog.english', title, tagline, overview);
         SQL
 
         # Trigger re-index on existing movies
-        execute("UPDATE movies SET id = id")
+        execute("UPDATE movies SET title = title")
       end
 
       dir.down { execute("DROP TRIGGER IF EXISTS tsvectorupdate ON movies") }
