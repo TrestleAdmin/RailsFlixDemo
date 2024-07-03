@@ -18,7 +18,7 @@ Trestle.resource(:people) do
   end
 
   sort_column(:credits_count) do |collection, order|
-    collection.reorder("credits_count #{order}")
+    collection.reorder(credits_count: order)
   end
 
   table do
