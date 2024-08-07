@@ -239,7 +239,7 @@ GEM
       trestle (~> 0.10.0.pre2)
     trestle-search (0.5.0.pre)
       trestle (~> 0.10.0.pre)
-    turbo-rails (2.0.5)
+    turbo-rails (2.0.6)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
