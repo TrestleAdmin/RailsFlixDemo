@@ -9,6 +9,16 @@ Trestle.resource(:movies) do
     model.includes(:genres, :directors)
   end
 
+  scopes do
+    scope :all, default: true
+
+    Movie::Genre.alphabetical.each do |genre|
+      scope genre.name.parameterize, label: genre.name do
+        genre.movies
+      end
+    end
+  end
+
   search do |query|
     query ? collection.pg_search(query) : collection
   end

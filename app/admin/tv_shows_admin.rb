@@ -9,6 +9,16 @@ Trestle.resource(:tv_shows, model: TVShow) do
     model.includes(:genres)
   end
 
+  scopes do
+    scope :all, default: true
+
+    TVShow::Genre.alphabetical.each do |genre|
+      scope genre.name.parameterize, label: genre.name do
+        genre.tv_shows
+      end
+    end
+  end
+
   search do |query|
     query ? collection.pg_search(query) : collection
   end
