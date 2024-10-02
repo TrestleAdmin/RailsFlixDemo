@@ -1,14 +1,27 @@
 {
-  "name": "RailsFlix",
+  "name": "railsflix",
   "private": true,
   "dependencies": {
     "@hotwired/turbo-rails": "^7.3.0",
+    "autoprefixer": "^10.4.20",
     "bootstrap": "^4.3.1",
+    "cssnano": "^7.0.6",
     "esbuild": "^0.17.15",
     "jquery": "^3.3.1",
-    "magnific-popup": "^1.1.0"
+    "magnific-popup": "^1.1.0",
+    "nodemon": "^3.1.7",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.79.4"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
-  }
+    "build": "esbuild app/javascript/*.* --bundle --minify --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --output=./app/assets/builds/application.css",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix",
+    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
