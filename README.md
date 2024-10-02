@@ -2,10 +2,13 @@
 
 Rails Flix is a simple application created to demonstrate the [Trestle admin framework](https://github.com/TrestleAdmin/trestle).
 
-> Admin: https://demo.trestle.io/admin (`demo@example.com` / `demo`)<br />
+> Admin: https://demo.trestle.io/admin — `demo@example.com` / `demo`<br>
 > Frontend: https://demo.trestle.io
 
-Along with the core [trestle]((https://github.com/TrestleAdmin/trestle)) gem, this demo also uses [trestle-auth](https://github.com/TrestleAdmin/trestle-auth) (for admin authentication) and [trestle-search](https://github.com/TrestleAdmin/trestle-search) (for search in combination with [pg_search](https://github.com/Casecommons/pg_search)).
+Along with the core [trestle](https://github.com/TrestleAdmin/trestle) gem, this demo also uses [trestle-auth](https://github.com/TrestleAdmin/trestle-auth) (for admin authentication) and [trestle-search](https://github.com/TrestleAdmin/trestle-search) (for search in combination with [pg_search](https://github.com/Casecommons/pg_search)).
+
+<img width="1376" alt="RailsFlix-Screenshot-1" src="https://github.com/user-attachments/assets/d24a0eb6-dd5a-4a2b-b545-a935e95eacf5">|<img width="1391" alt="RailsFlix-Screenshot-2" src="https://github.com/user-attachments/assets/25611adf-a2e3-4983-becf-3ca8b61fccaa">
+|:-:|:-:|
 
 
 ## Code of Interest
@@ -48,7 +51,8 @@ Requirements: Ruby 3.3.5, PostgreSQL, Yarn
 
 6. Login to the admin at http://localhost:3000/admin. The default account created in 4c) is:
 
-    > demo@example.com / demo
+    > **Email:** `demo@example.com`<br>
+    > **Password:** `demo`
 
 
 ## License
