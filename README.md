@@ -18,7 +18,7 @@ Along with the core [trestle]((https://github.com/TrestleAdmin/trestle)) gem, th
 
 ## Local Development Setup
 
-Requirements: Ruby 3.2.2, PostgreSQL, Yarn
+Requirements: Ruby 3.3.5, PostgreSQL, Yarn
 
 1. Clone the repository
 
@@ -48,7 +48,7 @@ Requirements: Ruby 3.2.2, PostgreSQL, Yarn
 
 6. Login to the admin at http://localhost:3000/admin. The default account created in 4c) is:
 
-    demo@example.com / demo
+    > demo@example.com / demo
 
 
 ## License
