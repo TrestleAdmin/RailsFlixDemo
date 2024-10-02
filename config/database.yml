@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: RailsFlix_production
-  username: RailsFlix
-  password: <%= ENV['RAILSFLIX_DATABASE_PASSWORD'] %>
+  database: railsflix
+  username: railsflix
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>

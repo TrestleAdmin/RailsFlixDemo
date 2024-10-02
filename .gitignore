@@ -23,7 +23,7 @@
 /public/assets
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
+# Ignore master key for decrypting credentials and more
 /config/master.key
 
 /app/assets/builds/*
@@ -31,3 +31,7 @@
 
 # Ignore environment variables
 .env
+
+# Ignore deployment configuration and secrets
+/config/deploy.yml
+/.kamal/secrets
