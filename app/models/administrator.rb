@@ -2,6 +2,8 @@ class Administrator < ApplicationRecord
   include Trestle::Auth::ModelMethods
   include Trestle::Auth::ModelMethods::Rememberable
 
+  validates :email, presence: true, uniqueness: true
+
   # Prevent demo user from being modified
   validate on: :update do
     errors.add(:email, "Cannot change login details for demo user") if demo? && email_changed?
