@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_05_14_120638) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_03_013148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -106,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_05_14_120638) do
     t.datetime "updated_at", precision: nil, null: false
     t.tsvector "tsv"
     t.index ["name"], name: "index_people_on_name"
-    t.index ["tmdb_id"], name: "index_people_on_tmdb_id"
+    t.index ["tmdb_id"], name: "index_people_on_tmdb_id", unique: true
     t.index ["tsv"], name: "index_people_on_tsv", using: :gin
   end
 
@@ -156,5 +156,4 @@ ActiveRecord::Schema[7.0].define(version: 2021_05_14_120638) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["media_type", "media_id"], name: "index_videos_on_media_type_and_media_id"
   end
-
 end

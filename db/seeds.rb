@@ -2,7 +2,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 puts "Creating demo user (demo@example.com / demo)...\n"
-Administrator.create!(email: "demo@example.com", password: "demo", first_name: "Demo", last_name: "User")
+Administrator.create(email: "demo@example.com", password: "demo", first_name: "Demo", last_name: "User")
 
 # Pages of movies / TV shows to fetch
 PAGES = ENV.fetch("PAGES") { 4 }.to_i
