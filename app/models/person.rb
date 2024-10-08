@@ -6,8 +6,7 @@ class Person < ApplicationRecord
 
   scope :alphabetical, -> { order(name: :asc) }
 
-  validates :name, presence: true
-  validates :tmdb_id, presence: true, uniqueness: true
+  validates :name, :tmdb_id, presence: true
 
   enum gender: { "Not specified" => 0, "Female" => 1, "Male" => 2, "Non-Binary" => 3 }
 

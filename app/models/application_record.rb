@@ -1,5 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
-  self.abstract_class = true
+  primary_abstract_class
 
 protected
   def tmdb_image(path, version="original")
