@@ -79,8 +79,12 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: railsflix
-  username: railsflix
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
-  host: <%= ENV["DB_HOST"] %>
+  primary: &primary_production
+    <<: *default
+    database: railsflix
+    username: railsflix
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV["DB_HOST"] %>
+  reseed:
+    <<: *primary_production
+    database: railsflix_reseed
