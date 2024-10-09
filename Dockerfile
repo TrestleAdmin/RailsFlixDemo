@@ -15,11 +15,14 @@ FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 WORKDIR /rails
 
 # Install base packages
-RUN curl -o /etc/apt/trusted.gpg.d/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc && \
-    echo "deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main 16" > /etc/apt/sources.list.d/pgdg.list
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client-16 cron && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips cron && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+RUN curl -o /etc/apt/trusted.gpg.d/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc && \
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main 16" > /etc/apt/sources.list.d/pgdg.list && \
+    apt-get update -qq && \
+    apt-get install --no-install-recommends -y postgresql-client-16
 
 # Set production environment
 ENV RAILS_ENV="production" \
