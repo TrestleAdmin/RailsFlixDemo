@@ -1,2 +1,2 @@
-* * * * * /rails/bin/reset >> /rails/log/reset.log 2>&1
-*/5 * * * * /rails/bin/reseed >> /rails/log/reseed.log 2>&1
+* 2 * * * /rails/bin/reset >> /rails/log/reset.log 2>&1
+0 20 * * 6 /rails/bin/reseed >> /rails/log/reseed.log 2>&1
