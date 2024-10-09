@@ -12,7 +12,7 @@ psql -h $DB_HOST -U railsflix -c "\set AUTOCOMMIT on\nDROP DATABASE railsflix_re
 
 # 2. Migrate and seed database
 echo "(2/3) Creating and seeding database..."
-bundle exec rake db:setup
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rake db:setup
 
 echo "(3/3) Exporting reseeded database..."
 pg_dump -Fc --no-acl --no-owner -h $DB_HOST -U railsflix $DB_NAME > /rails/storage/reseed.db
