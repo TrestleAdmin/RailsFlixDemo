@@ -8,11 +8,11 @@ export DB_NAME=railsflix_reseed
 
 # 1. Drop existing database
 echo "(1/3) Dropping old reseed database..."
-psql -h $DB_HOST -U railsflix -c "DROP DATABASE railsflix_reseed; CREATE DATABASE railsflix_reseed"
+psql -h $DB_HOST -U railsflix -c "\set AUTOCOMMIT on\nDROP DATABASE railsflix_reseed"
 
 # 2. Migrate and seed database
-echo "(2/3) Migrating and seeding database..."
-bundle exec rake db:seed
+echo "(2/3) Creating and seeding database..."
+bundle exec rake db:setup
 
 echo "(3/3) Exporting reseeded database..."
 pg_dump -Fc --no-acl --no-owner -h $DB_HOST -U railsflix $DB_NAME > /rails/storage/reseed.db
