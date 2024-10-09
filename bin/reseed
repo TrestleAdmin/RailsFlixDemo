@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Exporting reseeded database..."
+pg_dump -Fc --no-acl --no-owner -h localhost -U railsflix railsflix > /rails/storage/reseed.db
