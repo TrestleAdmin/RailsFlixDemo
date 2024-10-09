@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_03_013148) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_09_064855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_013148) do
     t.integer "vote_count", default: 0
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.tsvector "tsv"
+    t.virtual "tsv", type: :tsvector, as: "to_tsvector('english'::regconfig, (((((COALESCE(title, ''::character varying))::text || ' '::text) || (COALESCE(tagline, ''::character varying))::text) || ' '::text) || (COALESCE(overview, ''::character varying))::text))", stored: true
     t.index ["release_date"], name: "index_movies_on_release_date"
     t.index ["title"], name: "index_movies_on_title"
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id"
@@ -138,7 +138,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_013148) do
     t.integer "vote_count", default: 0
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.tsvector "tsv"
+    t.virtual "tsv", type: :tsvector, as: "to_tsvector('english'::regconfig, (((COALESCE(name, ''::character varying))::text || ' '::text) || (COALESCE(overview, ''::character varying))::text))", stored: true
     t.index ["name"], name: "index_tv_shows_on_name"
     t.index ["tmdb_id"], name: "index_tv_shows_on_tmdb_id"
     t.index ["tsv"], name: "index_tv_shows_on_tsv", using: :gin
