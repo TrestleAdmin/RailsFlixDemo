@@ -8,7 +8,7 @@ class Person < ApplicationRecord
 
   validates :name, presence: true
 
-  enum gender: { "Not specified" => 0, "Female" => 1, "Male" => 2, "Non-Binary" => 3 }
+  enum :gender, { "Not specified" => 0, "Female" => 1, "Male" => 2, "Non-Binary" => 3 }
 
   def initials
     name.split.map(&:first).join
