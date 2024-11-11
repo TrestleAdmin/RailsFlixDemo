@@ -1,0 +1,7 @@
+#!/bin/sh
+
+export PGPASSWORD=$POSTGRES_PASSWORD
+
+echo "Restoring from database dump..."
+pg_restore --clean --no-acl --no-owner -n public -h $DB_HOST -U railsflix -d railsflix /rails/storage/railsflix.db
+echo "Restoration complete."
