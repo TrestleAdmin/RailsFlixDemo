@@ -1,0 +1,30 @@
+/* This file may be used for providing additional customizations to the Trestle
+ * admin. It will be automatically included within all admin pages.
+ */
+
+.poster-column {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.media-title-column {
+  min-width: 15em;
+
+  a {
+    white-space: normal;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+
+  small {
+    display: block;
+  }
+}
+
+.poster {
+  display: inline-block;
+  height: 50px;
+  max-width: none;
+}
