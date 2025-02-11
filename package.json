@@ -6,7 +6,7 @@
     "autoprefixer": "^10.4.20",
     "bootstrap": "^4.3.1",
     "cssnano": "^7.0.6",
-    "esbuild": "^0.17.15",
+    "esbuild": "^0.25.0",
     "jquery": "^3.3.1",
     "magnific-popup": "^1.1.0",
     "nodemon": "^3.1.7",
